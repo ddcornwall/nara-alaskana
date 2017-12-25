@@ -13,3 +13,22 @@ Known issue:
 
 Sort is not yet working across all fields. The API is currently coded so that if a field is not sortable, attempting to sort by it will return an error (rather than silently ignoring the parameter).
 ---
+---
+
+Examination of individual record's JSON fields
+
+Individual record to check fields available through JSON
+https://catalog.archives.gov/api/v1/?naIds=25341595
+
+Possible sorting hooks
+JSON.opaResponse.results.result[0].description.item.recordHistory.created.dateTime
+JSON.opaResponse.results.result[0].description.item.recordHistory.imported.dateTime
+
+Possible search hooks
+JSON.opaResponse.results.result[0].description.item.variantControlNumberArray.variantControlNumber.number - "Alaska Digitization Project"
+
+Possible way to limit by year:
+JSON.opaResponse.results.result[0].description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year
+JSON.opaResponse.results.result[0].description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year
+
+---
