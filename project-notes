@@ -1,0 +1,15 @@
+The purpose of this file is to keep track of things that I think will come in handy when I start the actual code.
+
+--
+Notes from NARA Catalog API search/export at https://github.com/usnationalarchives/Catalog-API/blob/master/search_and_export.md
+
+Sorting results
+The results set can be sorted by a given field by using the sort= parameter in combination with the field name and either asc or desc, separated by a space. For example, sort=naId asc (or, with URL encoding sort=naId%20asc). So, sorting the query for the keyword "navy" by NAIDs from lowest to highest is:
+
+[https://catalog.archives.gov/api/v1/?q=navy&sort=naId asc](https://catalog.archives.gov/api/v1/?q=navy&sort=naId asc)
+Fields are coded as either string, integer, or datetime, so that they should sort according to the correct logic.
+
+Known issue:
+
+Sort is not yet working across all fields. The API is currently coded so that if a field is not sortable, attempting to sort by it will return an error (rather than silently ignoring the parameter).
+---
