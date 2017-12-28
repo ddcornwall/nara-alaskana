@@ -38,7 +38,7 @@
     console.log("Title: " + response.opaResponse.results.result[9].description.fileUnit.title);
     console.log("Parent Series Title: " + response.opaResponse.results.result[9].description.fileUnit.parentSeries.title);
     console.log("Creating Organization: " + response.opaResponse.results.result[9].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
-    console.log("There are " + response.opaResponse.results.result[9].objects.object + "digital objects associated with this record.");
+    console.log("There are " + response.opaResponse.results.result[9].objects.object.length + "digital objects associated with this record.");
     console.log("First digital object found found at " + response.opaResponse.results.result[9].objects.object[0].file["@url"]);
     console.log("Full record and additional objects available at https://catalog.archives.gov/id/" + response.opaResponse.results.result[9].naId);
 
