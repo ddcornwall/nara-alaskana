@@ -21,12 +21,12 @@ $("#recent").append("</br> Creating Organization: " + response.opaResponse.resul
 //workaround needed for items without digital objects - need to refine selection
 if (response.opaResponse.results.result[i].objects.object.length > 0) {
 $("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
-$("#recent").append("</br> First digital object found found at " + response.opaResponse.results.result[i].objects.object[0].file["@url"]);
-$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\">");
+$("#recent").append("</br> First digital object found found at <img src = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\">");
+$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
 }
 //end workaround
 
-$("#recent").append("</br> Full record and additional objects available at https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId);
+$("#recent").append("</br> Full record and additional objects available at <a href=\"https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "\"> https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "</a>");
 $("#recent").append("</br> NaID = " + response.opaResponse.results.result[i].naId + "</p>");
 }
 
