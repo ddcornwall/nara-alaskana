@@ -13,6 +13,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!-- Local JavaScript-->
+    <script src="script.js"></script>
+
     <!--Local css file-->
     <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
@@ -21,39 +24,12 @@
   <body>
     <h1>National Archives Alaskana Explorer</h1>
 
-    <script>
-    //duplicate of what is in script.js
-    //Get recent
-    akURL="https://catalog.archives.gov/api/v1/?" //base akURL
-    akURL=akURL + "q=alaska digitization project"
-    akURL=akURL + "&sort=description.recordHistory.created.dateTime desc"
-    console.log(akURL);
 
-
-    $.getJSON(akURL, function( data ) {
-    response=data;
-    console.log(response);
-    console.log("NaID= " + response.opaResponse.results.result[9].naId); //As of 12/18/17, [9] was attu log books (72054847)
-    console.log("Record Created: " + response.opaResponse.results.result[9].description.fileUnit.recordHistory.created.dateTime);
-    console.log("Title: " + response.opaResponse.results.result[9].description.fileUnit.title);
-    console.log("Parent Series Title: " + response.opaResponse.results.result[9].description.fileUnit.parentSeries.title);
-    console.log("Creating Organization: " + response.opaResponse.results.result[9].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
-    console.log("There are " + response.opaResponse.results.result[9].objects.object.length + "digital objects associated with this record.");
-    console.log("First digital object found found at " + response.opaResponse.results.result[9].objects.object[0].file["@url"]);
-    console.log("Full record and additional objects available at https://catalog.archives.gov/id/" + response.opaResponse.results.result[9].naId);
-
-    //display location information
-    //$("#local-location").append("<p>" + conditions.name + ", located at </br>" +  "Latitude: " + conditions.coord.lat + "</br>" +
-    //"Longitude: " + conditions.coord.lon + "</p>");
-
-
-    }); //End getJSON
-  </script>
 
 <!--Load most recent items with select metadata -->
 <div id="recent"></div>
-<!--
-  <script src="script.js"></script>
--->
+
+
+
 </body>
 </html>
