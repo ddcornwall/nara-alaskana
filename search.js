@@ -1,25 +1,33 @@
 $(function() { //begin document ready
 
+function loadData() { //begin loadData
+
 //Get recent
 //base url
-akURL="https://catalog.archives.gov/api/v1/?"
+akURL="https://catalog.archives.gov/api/v1/?";
 
-//Set rows to 5 (5 rows retr in 23 seconds, 10 rows retr in about 42 seconds, 20 rows returned in 1:30 or so.)
-akURL=akURL+"rows=5&"
+//Set rows to 10 (5 rows retr in 23 seconds, 10 rows retr in about 42 seconds, 20 rows returned in 1:30 or so.)
+akURL=akURL+"rows=10&";
 
-//pull records mentioning the Alaska Digitization Project as an "alternate control number"
-akURL=akURL + "description.fileUnit.variantControlNumberArray.variantControlNumber=\"Alaska%20Digitization%20Project\""
+//Set keywords from form in search.html
+var keywords = $("#keywords").val();
+akURL=akURL + "q=" + keywords + "&";
+
+//limit records mentioning the Alaska Digitization Project as an "alternate control number"
+akURL=akURL + "description.fileUnit.variantControlNumberArray.variantControlNumber=\"Alaska%20Digitization%20Project\"";
 
 //Sort items by when parent record created
-akURL=akURL + "&sort=description.recordHistory.created.dateTime desc"
+//akURL=akURL + "&sort=description.recordHistory.created.dateTime desc"
 
-//Test search to retrieve only items with objects - 1/20/2018
-//akURL="https://catalog.archives.gov/api/v1/?q=alaska&resultTypes=item,object&sort=description.recordHistory.created.dateTime%20desc"
+//Sort items by title of record
+//akURL=akURL + "&sort=description.fileUnit.title asc";
+
 console.log(akURL);
 
 
 $.getJSON(akURL, function( data ) {
 response=data;
+console.log(response);
 
 //display results
 for (var i=0; i < response.opaResponse.results.result.length; i++) {
@@ -41,5 +49,11 @@ $("#recent").append("</br> NaID = " + response.opaResponse.results.result[i].naI
 } // end display loop
 
 }); //End getJSON
+
+return false;
+
+}; //end function load data
+
+$('#form-container').submit(loadData);
 
 }); //end document ready

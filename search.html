@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>National Archives Alaskana Explorer</title>
+    <meta charset="utf-8">
+
+
+    <!--Load bootstrap css, needed for grid layout-->
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
+
+    <!--Local css file-->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Local JavaScript-->
+    <script src="search.js"></script>
+
+
+</head>
+
+
+  <body>
+    <h1>National Archives Alaskana Explorer 0.9: Searching</h1>
+
+<p>This page provides a keyword search to the US National Archives Alaska Digitization Project and displays ten records sorted by title.
+<p>This is a personal project of Daniel Cornwall, a librarian/coder living in Alaska.
+  <form id="form-container" class="form-container">
+        <label for="keywords">Enter keywords: </label><input type="text" id="keywords" value="">
+        <button id="submit-btn">Submit</button>
+  </form>
+
+<p style="border-bottom-style: solid">Please be patient as it may take up to one minute for records to appear. This is a known issue and being worked on.
+
+
+
+<!--Load most recent items with select metadata -->
+<div id="recent"></div>
+
+
+
+</body>
+</html>
