@@ -1,6 +1,15 @@
 The purpose of this file is to keep track of things that I think will come in handy when I start the actual code.
 
+
+1/20/2018 - To find the latest NARA records mentioning Alaska, use:
+https://catalog.archives.gov/api/v1/?q=alaska&sort=description.recordHistory.created.dateTime%20desc
+As of 1/20/2018, the latest record alaskana records of any kind were from 12/12/2017.
+
+1/20/2018 - Example of JSON record with multiple objects - Deck Log Book Alaska August 1943:
+https://catalog.archives.gov/api/v1/?naIds=72054791
+
 12/27/2017 discovered https://catalog.archives.gov/interactivedocumentation had a full list of searching/sorting fields.
+
 
 --
 
@@ -34,5 +43,12 @@ JSON.opaResponse.results.result[0].description.item.variantControlNumberArray.va
 Possible way to limit by year:
 JSON.opaResponse.results.result[0].description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year
 JSON.opaResponse.results.result[0].description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year
+
+Pagination
+To start with, we'll look at how to paginate the results set. Use the rows= parameter to set the number of results that will display in the response. Use offset= to specify where in the results set to return your results from.
+
+https://catalog.archives.gov/api/v1/?rows=5&offset=9
+Both parameters are optional; when omitted, rows defaults to 10 and offset defaults to 0 (i.e., starting from the beginning). Note that the results count from 1 (there is no 0), so you would use &offset=1 to get the second result. So, our sample query above will return results 10–14. The num field in the response tells you the number of each result in the set (it can be omitted or included from responses like other metadata fields below).
+
 
 ---
