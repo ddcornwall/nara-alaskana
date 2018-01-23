@@ -20,6 +20,7 @@ console.log(akURL);
 
 $.getJSON(akURL, function( data ) {
 response=data;
+console.log(response);
 
 //display results
 for (var i=0; i < response.opaResponse.results.result.length; i++) {

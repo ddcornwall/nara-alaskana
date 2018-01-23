@@ -30,7 +30,19 @@ response=data;
 console.log(response);
 
 //display results
+
 for (var i=0; i < response.opaResponse.results.result.length; i++) {
+
+//workaround needed for objects retreived without descriptions
+if (response.opaResponse.results.result[i].type === "object") {
+$("#recent").append("No description retrieved for this digital object </br>");
+//$("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
+//$("#recent").append("</br> First digital object found found at <a href = \"" + response.opaResponse.results.result[0].objects.object.file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "</a>" );
+//$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
+$("#recent").append("</br> Full record and additional objects available at <a href=\"https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].parentDescriptionNaId + "\" target=\"_blank\"> https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].parentDescriptionNaId + "</a>");
+$("#recent").append("</br>Parent Description NaID = " + response.opaResponse.results.result[i].parentDescriptionNaId + "<p style=\"border-bottom-style: solid\"> ");
+} else {
+
 $("#recent").append("Record Created: " + response.opaResponse.results.result[i].description.fileUnit.recordHistory.created.dateTime);
 $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].description.fileUnit.title);
 $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.title);
@@ -41,11 +53,12 @@ if (response.opaResponse.results.result[i].objects.object.length > 0) {
 $("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
 $("#recent").append("</br> First digital object found found at <a href = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "</a>" );
 $("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
-}
-//end workaround
+} //end workaround for non objects/
 
 $("#recent").append("</br> Full record and additional objects available at <a href=\"https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "\" target=\"_blank\"> https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "</a>");
 $("#recent").append("</br> NaID = " + response.opaResponse.results.result[i].naId + "<p style=\"border-bottom-style: solid\"> ");
+} // end workaround for non-description
+
 } // end display loop
 
 }); //End getJSON
