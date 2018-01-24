@@ -35,15 +35,16 @@ for (var i=0; i < response.opaResponse.results.result.length; i++) {
 
 //workaround needed for objects retreived without descriptions
 if (response.opaResponse.results.result[i].type === "object") {
-$("#recent").append("No description retrieved for this digital object </br>");
-//$("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
-//$("#recent").append("</br> First digital object found found at <a href = \"" + response.opaResponse.results.result[0].objects.object.file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "</a>" );
-//$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
+$("#recent").append("No description retrieved for this digital object.");
+$("#recent").append("</br> This digital object found found at <a href = \"" + response.opaResponse.results.result[i].objects.object.file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object.file["@url"] + "</a></br>" );
+$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object.thumbnail["@url"] + "\">");
 $("#recent").append("</br> Full record and additional objects available at <a href=\"https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].parentDescriptionNaId + "\" target=\"_blank\"> https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].parentDescriptionNaId + "</a>");
 $("#recent").append("</br>Parent Description NaID = " + response.opaResponse.results.result[i].parentDescriptionNaId + "<p style=\"border-bottom-style: solid\"> ");
 } else {
 
-$("#recent").append("Record Created: " + response.opaResponse.results.result[i].description.fileUnit.recordHistory.created.dateTime);
+$("#recent").append("Record Cataloged: " + response.opaResponse.results.result[i].description.fileUnit.recordHistory.created.dateTime);
+$("#recent").append("</br> Year Records Start: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year);
+$("#recent").append("</br> Year Records End: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
 $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].description.fileUnit.title);
 $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.title);
 $("#recent").append("</br> Creating Organization: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
@@ -51,8 +52,8 @@ $("#recent").append("</br> Creating Organization: " + response.opaResponse.resul
 //workaround needed for items without digital objects - need to refine selection
 if (response.opaResponse.results.result[i].objects.object.length > 0) {
 $("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
-$("#recent").append("</br> First digital object found found at <a href = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "</a>" );
-$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
+$("#recent").append("</br> First digital object found found at <a href = \"" + response.opaResponse.results.result[i].objects.object[i].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[i].file["@url"] + "</a> </br>" );
+$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[i].thumbnail["@url"] + "\">");
 } //end workaround for non objects/
 
 $("#recent").append("</br> Full record and additional objects available at <a href=\"https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "\" target=\"_blank\"> https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "</a>");
