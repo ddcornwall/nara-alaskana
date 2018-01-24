@@ -52,8 +52,8 @@ $("#recent").append("</br> Creating Organization: " + response.opaResponse.resul
 //workaround needed for items without digital objects - need to refine selection
 if (response.opaResponse.results.result[i].objects.object.length > 0) {
 $("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
-$("#recent").append("</br> First digital object found found at <a href = \"" + response.opaResponse.results.result[i].objects.object[i].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[i].file["@url"] + "</a> </br>" );
-$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[i].thumbnail["@url"] + "\">");
+$("#recent").append("</br> First digital object found found at <a href = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[i].file["@url"] + "</a> </br>" );
+$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
 } //end workaround for non objects/
 
 $("#recent").append("</br> Full record and additional objects available at <a href=\"https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "\" target=\"_blank\"> https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "</a>");
