@@ -2,6 +2,9 @@ $(function() { //begin document ready
 
 function loadData() { //begin loadData
 
+$("#recent").empty();  //Clears any previous search results
+
+
 //Get recent
 //base url
 akURL="https://catalog.archives.gov/api/v1/?";
