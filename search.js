@@ -14,10 +14,13 @@ akURL=akURL+"rows=10&";
 
 //Set keywords from form in search.html
 var keywords = $("#keywords").val();
-akURL=akURL + "q=" + keywords + "&";
+akURL=akURL + "q=" + keywords;
 
 //limit records mentioning the Alaska Digitization Project as an "alternate control number"
-akURL=akURL + "description.fileUnit.variantControlNumberArray.variantControlNumber=\"Alaska%20Digitization%20Project\"";
+akURL=akURL + "&description.fileUnit.variantControlNumberArray.variantControlNumber=\"Alaska%20Digitization%20Project\"";
+
+//records to items with descriptions
+akURL=akURL + "&resultTypes=fileUnit"
 
 //Sort items by when parent record created
 //akURL=akURL + "&sort=description.recordHistory.created.dateTime desc"
@@ -50,7 +53,8 @@ $("#recent").append("</br> Year Records Start: " + response.opaResponse.results.
 $("#recent").append("</br> Year Records End: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
 $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].description.fileUnit.title);
 $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.title);
-$("#recent").append("</br> Creating Organization: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
+//The line below fails when there is more than one creating organization. Would need to be able to test for a deal with an array before displaying.
+//$("#recent").append("</br> Creating Organization: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
 
 //workaround needed for items without digital objects - need to refine selection
 if (response.opaResponse.results.result[i].objects.object.length > 0) {
@@ -72,5 +76,6 @@ return false;
 }; //end function load data
 
 $('#form-container').submit(loadData);
+
 
 }); //end document ready
