@@ -1,5 +1,28 @@
 The purpose of this file is to keep track of things that I think will come in handy when I start the actual code.
 
+1/27/2018
+
+Problem: ["@extendedText"] from objects.object.file appears to slow retrievals to crawls. But, after experimentation, objects.object.file appears to be required to make objects.object.thumbnail["@URL"] to display properly. 
+
+Attempted to retrive ["@path"] from objects.object.file to see if it alone could force thumbnail display, but API rejects anything in the resultFields= that contains ["@anything"].
+
+Possible alternative method would be retrieve objects.object.thumbnail alone, which contains a partial path an the name of the thumbnail. Then reconstruct the missing bits using things retrieved from fileUnit or description. 
+
+Thumbnail URL to analyze:
+https://catalog.archives.gov/catalogmedia/live/seattle/rg-181/3054053/jpgs/3054053-001-012-0001.jpg/opa-renditions/thumbnails/3054053-001-012-0001.jpg-thumb.jpg
+
+
+https://catalog.archives.gov/catalogmedia/live/ - base URL
+seattle/ - description.fileUnit.physicalOccurrenceArray.fileUnitPhysicalOccurrence.referenceUnitArray.referenceUnit.city
+rg-181/
+3054053/ - description.fileUnit.parentSeries.naId
+jpgs/
+3054053-001-012-0001.jpg/ - This part only appears within objects.object.file 
+opa-renditions/thumbnails/3054053-001-012-0001.jpg-thumb.jpg
+
+BECAUSE ONE NEEDED ITEM IS IN objects.object.file, this approach will not work.
+
+
 
 1/20/2018 - To find the latest NARA records mentioning Alaska, use:
 https://catalog.archives.gov/api/v1/?q=alaska&sort=description.recordHistory.created.dateTime%20desc
