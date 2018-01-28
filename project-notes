@@ -1,5 +1,12 @@
 The purpose of this file is to keep track of things that I think will come in handy when I start the actual code.
 
+1/27/2018
+
+Thumbnail URL to analyze:
+https://catalog.archives.gov/catalogmedia/live/seattle/rg-181/3054053/jpgs/3054053-001-012-0001.jpg/opa-renditions/thumbnails/3054053-001-012-0001.jpg-thumb.jpg
+
+
+
 
 1/20/2018 - To find the latest NARA records mentioning Alaska, use:
 https://catalog.archives.gov/api/v1/?q=alaska&sort=description.recordHistory.created.dateTime%20desc
