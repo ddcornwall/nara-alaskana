@@ -13,13 +13,14 @@ https://catalog.archives.gov/catalogmedia/live/seattle/rg-181/3054053/jpgs/30540
 
 
 https://catalog.archives.gov/catalogmedia/live/ - base URL
-seattle/
+seattle/ - description.fileUnit.physicalOccurrenceArray.fileUnitPhysicalOccurrence.referenceUnitArray.referenceUnit.city
 rg-181/
-3054053/
+3054053/ - description.fileUnit.parentSeries.naId
 jpgs/
-3054053-001-012-0001.jpg/
+3054053-001-012-0001.jpg/ - This part only appears within objects.object.file 
 opa-renditions/thumbnails/3054053-001-012-0001.jpg-thumb.jpg
 
+BECAUSE ONE NEEDED ITEM IS IN objects.object.file, this approach will not work.
 
 
 
