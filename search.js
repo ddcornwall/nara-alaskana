@@ -19,8 +19,8 @@ akURL=akURL + "q=" + keywords;
 //limit records mentioning the Alaska Digitization Project as an "alternate control number"
 akURL=akURL + "&description.fileUnit.variantControlNumberArray.variantControlNumber=\"Alaska%20Digitization%20Project\"";
 
-//records to items with descriptions
-akURL=akURL + "&resultTypes=fileUnit"
+//limit records to items with descriptions
+akURL=akURL + "&resultTypes=fileUnit";
 
 //Sort items by when parent record created
 //akURL=akURL + "&sort=description.recordHistory.created.dateTime desc"
@@ -39,15 +39,6 @@ console.log(response);
 
 for (var i=0; i < response.opaResponse.results.result.length; i++) {
 
-//workaround needed for objects retreived without descriptions
-if (response.opaResponse.results.result[i].type === "object") {
-$("#recent").append("No description retrieved for this digital object.");
-$("#recent").append("</br> This digital object found found at <a href = \"" + response.opaResponse.results.result[i].objects.object.file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object.file["@url"] + "</a></br>" );
-$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object.thumbnail["@url"] + "\">");
-$("#recent").append("</br> Full record and additional objects available at <a href=\"https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].parentDescriptionNaId + "\" target=\"_blank\"> https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].parentDescriptionNaId + "</a>");
-$("#recent").append("</br>Parent Description NaID = " + response.opaResponse.results.result[i].parentDescriptionNaId + "<p style=\"border-bottom-style: solid\"> ");
-} else {
-
 $("#recent").append("Record Cataloged: " + response.opaResponse.results.result[i].description.fileUnit.recordHistory.created.dateTime);
 $("#recent").append("</br> Year Records Start: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year);
 $("#recent").append("</br> Year Records End: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
@@ -56,16 +47,11 @@ $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results
 //The line below fails when there is more than one creating organization. Would need to be able to test for a deal with an array before displaying.
 //$("#recent").append("</br> Creating Organization: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
 
-//workaround needed for items without digital objects - need to refine selection
-if (response.opaResponse.results.result[i].objects.object.length > 0) {
 $("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
 $("#recent").append("</br> First digital object found found at <a href = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[i].file["@url"] + "</a> </br>" );
 $("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
-} //end workaround for non objects/
-
 $("#recent").append("</br> Full record and additional objects available at <a href=\"https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "\" target=\"_blank\"> https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "</a>");
 $("#recent").append("</br> NaID = " + response.opaResponse.results.result[i].naId + "<p style=\"border-bottom-style: solid\"> ");
-} // end workaround for non-description
 
 } // end display loop
 
