@@ -18,24 +18,33 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Local JavaScript-->
-    <script src="script.js"></script>
+    <script src="search.js"></script>
 
 
 </head>
 
 
   <body>
-    <h1>National Archives Alaskana Explorer 0.9</h1>
+    <h1>National Archives (NARA) Alaskana Explorer 0.9</h1>
 
-<p>At the current time (January 2018), this application searches for items in the National Archives from the Alaska Digitization Project and displays the five most recently created records.
-<p>This is a personal project of Daniel Cornwall, a librarian/coder living in Alaska.
-<p style="border-bottom-style: solid">Please be patient as it may take up to one minute for records to appear. This is a known issue and being worked on.
+<p>This page provides a keyword search to the US National Archives Alaska Digitization Project and displays ten records.
+
+  <form id="form-container" class="form-container">
+        <label for="keywords">Enter keywords: </label><input type="text" id="keywords" value="">
+        <button id="submit-btn">Submit</button>
+  </form>
+<p>Please be patient as it may take up to one minute for records to appear. This is a known issue and being worked on.
+</p>
+
+In addition to searching, you may also view <a href="new.html">the most recently cataloged records</a> from the Alaska Digitization Project.
+
+<p style="border-bottom-style: solid"></p>
 
 
 <!--Load most recent items with select metadata -->
 <div id="recent"></div>
 
 
-
+<p>This is a personal project of Daniel Cornwall, a librarian/coder living in Alaska. He can be <a href="https://librarianfromalaska.wordpress.com/about/" target="_blank">contacted through his blog's about page</p>.
 </body>
 </html>

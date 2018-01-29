@@ -1,5 +1,10 @@
 $(function() { //begin document ready
 
+  var $recentLinks = $("#recent");
+
+  $recentLinks.text("");  //Clears any previous search results
+
+
 //Get recent
 //base url
 akURL="https://catalog.archives.gov/api/v1/?"
@@ -18,11 +23,16 @@ akURL=akURL + "&sort=description.recordHistory.created.dateTime desc"
 
 
 console.log(akURL);
+$recentLinks.text("Working on getting the most recently cataloged items from the NARA Alaska Digitization Project.");
 
 
 $.getJSON(akURL, function( data ) {
 response=data;
 console.log(response);
+
+$recentLinks.text("The ten most recently cataloged items from the NARA Alaska Digitization Project are:");
+$("#recent").append("</br></br>");
+
 
 //display results
 

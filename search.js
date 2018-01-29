@@ -2,7 +2,9 @@ $(function() { //begin document ready
 
 function loadData() { //begin loadData
 
-$("#recent").empty();  //Clears any previous search results
+var $recentLinks = $("#recent");
+
+$recentLinks.text("");  //Clears any previous search results
 
 
 //Get recent
@@ -29,14 +31,21 @@ akURL=akURL + "&resultTypes=fileUnit";
 //akURL=akURL + "&sort=description.fileUnit.title asc";
 
 console.log(akURL);
+$recentLinks.text("Working on getting ten items from the NARA Alaska Digitization Project on " + keywords + ".");
+
+//Let user know if search fails
+var naraRequestTimeout = setTimeout(function(){
+$recentLinks.text("Search failed. Unable to get search results in reasonable time.");
+}, 60000);
 
 
 $.getJSON(akURL, function( data ) {
 response=data;
 console.log(response);
+$recentLinks.text("Ten items from the NARA Alaska Digitization Project on " + keywords + ".");
+$("#recent").append("</br></br>");
 
 //display results
-
 for (var i=0; i < response.opaResponse.results.result.length; i++) {
 
 $("#recent").append("Record Cataloged: " + response.opaResponse.results.result[i].description.fileUnit.recordHistory.created.dateTime);
@@ -54,6 +63,7 @@ $("#recent").append("</br> Full record and additional objects available at <a hr
 $("#recent").append("</br> NaID = " + response.opaResponse.results.result[i].naId + "<p style=\"border-bottom-style: solid\"> ");
 
 } // end display loop
+clearTimeout(naraRequestTimeout);
 
 }); //End getJSON
 
