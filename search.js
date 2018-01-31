@@ -36,7 +36,7 @@ $recentLinks.text("Working on getting ten items from the NARA Alaska Digitizatio
 //Let user know if search fails
 var naraRequestTimeout = setTimeout(function(){
 $("#recent").append("</br><p>Search or display timed out. I apologize for the inconvenience.</p>");
-}, 60000);
+}, 90000);
 
 
 $.getJSON(akURL, function( data ) {
@@ -56,9 +56,15 @@ $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results
 //The line below fails when there is more than one creating organization. Would need to be able to test for a deal with an array before displaying.
 //$("#recent").append("</br> Creating Organization: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
 
+//Workaround for items without digital objects - this based on 1/30/18 discovery of NaID 41027079
+if (response.opaResponse.results.result[i].objects === undefined) {
+  $("#recent").append("</br>This record has no associated digital objects. Unknown reason.");
+} else {
 $("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
 $("#recent").append("</br> First digital object found found at <a href = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "</a> </br>" );
 $("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
+}
+
 $("#recent").append("</br> Full record and additional objects available at <a href=\"https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "\" target=\"_blank\"> https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "</a>");
 $("#recent").append("</br> NaID = " + response.opaResponse.results.result[i].naId + "<p style=\"border-bottom-style: solid\"> ");
 } // end display loop
