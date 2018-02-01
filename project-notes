@@ -1,5 +1,9 @@
 The purpose of this file is to keep track of things that I think will come in handy when I start the actual code.
 
+2/1/2018 
+
+Realized that I need to bring in item level descriptions if I want Alaska Earthquake photographs. See example at https://catalog.archives.gov/api/v1/?naIds=25341615. This will require some item-specific tests and lines in results list. Simply pulling in items will likely cause display to break. 
+
 1/27/2018
 
 Problem: ["@extendedText"] from objects.object.file appears to slow retrievals to crawls. But, after experimentation, objects.object.file appears to be required to make objects.object.thumbnail["@URL"] to display properly. 
