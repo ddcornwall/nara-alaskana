@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>About: National Archives Alaskana Explorer</title>
+    <meta charset="utf-8">
+
+
+    <!--Load bootstrap css, needed for grid layout-->
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
+
+    <!--Local css file-->
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+
+  <body>
+    <h1>About the National Archives Alaskana Explorer</h1>
+
+    <h2>TL:DR version</h2>
+    <p>This project uses the US National Archive Catalog Search API to pull records associated with the Alaska Digitization Project. It provides a simplified view of fields and provides links to additional material available in the full National Archives catalog at <a href="https://catalog.archives.gov/">https://catalog.archives.gov/</a>.</p>
+
+    <p>This project is not affialiated with the US National Archives. As of February 2018 it was not affilated with any other institution. It started as a personal project of <a href="https://www.linkedin.com/in/danielcornwall/">Daniel Cornwall</a>, a librarian, coder and lifelong learner living in Juneau, Alaska.
+
+    <h2>Motivation for Project</h2>
+
+    <p>My motivation for this project was to share the rich digitized treasures that the National Archives has on file for Alaska as a result of Alaska's long history as a US territory. While this can be accessed through the National Archives main catalog, I had the impression that the full catalog and the lengthy metadata listed in full catalog could be intimidating for some Alaskan users. So I had the idea to provide a search to a subset of records which I hoped would include only digitized items mentioning Alaska. Eventually, I want to provide some canned searches to key events and topics in Alaska's history.</p>
+
+    <h2>Implementation</h2>
+
+    <p>My original idea to create a subset of records to search from was to use "Alaska" as a keyword and limit the results to descriptions with online records, then let people do searches within that set. In the main National Archives catalog, you can do this by searching for Alaska and then clicking on the "<a href="https://catalog.archives.gov/search?q=alaska&tabType=online">available online tab.</a>" However, I could not find a way to truly replicate this search using the <a href="https://github.com/usnationalarchives/Catalog-API/blob/master/search_and_export.md">National Archives Catalog Search API</a>. So I tried several approaches.</p>
+
+    <p>I finally settled on something not applicable to other states. I limited to retrievals to items listed as belonging to the "Alaska Digitization Project" as listed in a description's "description.fileUnit.variantControlNumberArray.variantControlNumber" field. The "Alaska Digitization Project" is the result of the closure of the National Archives Anchorage Alaska field office. When the office was closed, nearly all the records were transferred to the Seattle field office. As a measure to soften the blow of moving Alaska related records somewhere inaccessible to many Alaskans, the National Archives agreed to digitize the Alaska related records they transferred. As far as I know, this is an ongoing project and it is uncertain when all the records will be digitized.</p>
+
+    <p>I want to keep the Alaskana Explorer focused on digitized records because I hope it will be a resource for students and other people who prioritize immediate access and who will in turn share their finds with others.</p>
+
+    <p>But I pay a price for limiting retrievals to items in the Alaska Digitization Project. I'm missing out on other digitized Alaskana that was created outside of the project. Eventually I'd like to figure that out.</p>
+
+    <h2>GitHub Links</h2>
+    <p>This project has a GitHub Repo. Aside from the code for these pages and search scripts, you might be interested in:</p>
+
+    <ul>
+    <li><a href="https://github.com/ddcornwall/nara-alaskana/blob/master/Alaskana-topics">Alaskana topics for browse - add your ideas!</a></li>
+    <li><a href="https://github.com/ddcornwall/nara-alaskana/blob/master/project-notes">Project Notes</a> - My notes on specific learnings or problems. Also see my <a href="https://librarianfromalaska.wordpress.com/tag/100daysofcode/">100DaysOfCode entries</a> on my blog for detailed progress.
+    </ul>
+
+    <h2>Bug Reports</h2>
+
+    <p>If you had a problem with your search, please <a href="https://librarianfromalaska.wordpress.com/bug-reports/" target ="_blank">send me a bug report</a>. (This link will open in a new window and send you to a page on my personal website.)</p>
+
+
+
+</body>
+</html>

@@ -42,7 +42,12 @@ $("#recent").append("</br><p>Search or display timed out. I apologize for the in
 $.getJSON(akURL, function( data ) {
 response=data;
 console.log(response);
-$recentLinks.text("Ten items from the NARA Alaska Digitization Project on " + keywords + ".");
+if (response.opaResponse.results.result.length < 10){
+   $recentLinks.text("Only" + response.opaResponse.results.result.length + " items were found on "+ keywords + ".</br>");
+} else {
+   $recentLinks.text("Ten items from the NARA Alaska Digitization Project on " + keywords + ".");
+}
+
 $("#recent").append("</br></br>");
 
 //display results
