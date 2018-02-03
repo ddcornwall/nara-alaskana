@@ -30,14 +30,14 @@ $recentLinks.text("Working on getting ten items from the NARA Alaska Digitizatio
 //Let user know if search fails
 var naraRequestTimeout = setTimeout(function(){
 $("#recent").append("</br><p>Search or display timed out. I apologize for the inconvenience.</p>");
-}, 90000);
+}, 120000);
 
 
 $.getJSON(akURL, function( data ) {
 response=data;
 console.log(response);
 if (response.opaResponse.results.result.length < 10){
-   $recentLinks.text("Only" + response.opaResponse.results.result.length + " items were found on "+ keywords + ".</br>");
+   $recentLinks.text("Only " + response.opaResponse.results.result.length + " items were found on "+ keywords + ".");
 } else {
    $recentLinks.text("Ten items from the NARA Alaska Digitization Project on " + keywords + ".");
 }
@@ -65,6 +65,9 @@ $("#recent").append("</br> Year Records Start: " + response.opaResponse.results.
 $("#recent").append("</br> Year Records End: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
 $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].description.fileUnit.title);
 $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.title);
+$("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
+$("#recent").append("</br> First digital object found at <a href = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "</a> </br>" );
+$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
 //The line below fails when there is more than one creating organization. Would need to be able to test for a deal with an array before displaying.
 //$("#recent").append("</br> Creating Organization: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
 }
@@ -72,12 +75,9 @@ $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results
 //Workaround for items without digital objects - this based on 1/30/18 discovery of NaID 41027079
 if (typeof response.opaResponse.results.result[i].objects !== 'undefined') {
   //$("#recent").append("</br>This record has no associated digital objects. Unknown reason.");
-} else if (typeof response.opaResponse.results.result[i].description !== 'undefined'){
-$("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
-$("#recent").append("</br> First digital object found at <a href = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "</a> </br>" );
-$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
 }
 
+//common fields for both fileUnit and item records
 $("#recent").append("</br> Full record and additional objects available at <a href=\"https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "\" target=\"_blank\"> https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "</a>");
 $("#recent").append("</br> NaID = " + response.opaResponse.results.result[i].naId + "<p style=\"border-bottom-style: solid\"> ");
 } // end display loop

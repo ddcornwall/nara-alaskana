@@ -1,16 +1,20 @@
 The purpose of this file is to keep track of things that I think will come in handy when I start the actual code.
 
-2/1/2018 
+2/2/2018
+Implemented items + file units. Finding that file unit results may not be displaying thumbnails any more.
+Need to recheck routines for display. Also search on fairbanks now seems to time out. 
 
-Realized that I need to bring in item level descriptions if I want Alaska Earthquake photographs. See example at https://catalog.archives.gov/api/v1/?naIds=25341615. This will require some item-specific tests and lines in results list. Simply pulling in items will likely cause display to break. 
+2/1/2018
+
+Realized that I need to bring in item level descriptions if I want Alaska Earthquake photographs. See example at https://catalog.archives.gov/api/v1/?naIds=25341615. This will require some item-specific tests and lines in results list. Simply pulling in items will likely cause display to break.
 
 1/27/2018
 
-Problem: ["@extendedText"] from objects.object.file appears to slow retrievals to crawls. But, after experimentation, objects.object.file appears to be required to make objects.object.thumbnail["@URL"] to display properly. 
+Problem: ["@extendedText"] from objects.object.file appears to slow retrievals to crawls. But, after experimentation, objects.object.file appears to be required to make objects.object.thumbnail["@URL"] to display properly.
 
 Attempted to retrive ["@path"] from objects.object.file to see if it alone could force thumbnail display, but API rejects anything in the resultFields= that contains ["@anything"].
 
-Possible alternative method would be retrieve objects.object.thumbnail alone, which contains a partial path an the name of the thumbnail. Then reconstruct the missing bits using things retrieved from fileUnit or description. 
+Possible alternative method would be retrieve objects.object.thumbnail alone, which contains a partial path an the name of the thumbnail. Then reconstruct the missing bits using things retrieved from fileUnit or description.
 
 Thumbnail URL to analyze:
 https://catalog.archives.gov/catalogmedia/live/seattle/rg-181/3054053/jpgs/3054053-001-012-0001.jpg/opa-renditions/thumbnails/3054053-001-012-0001.jpg-thumb.jpg
@@ -21,7 +25,7 @@ seattle/ - description.fileUnit.physicalOccurrenceArray.fileUnitPhysicalOccurren
 rg-181/
 3054053/ - description.fileUnit.parentSeries.naId
 jpgs/
-3054053-001-012-0001.jpg/ - This part only appears within objects.object.file 
+3054053-001-012-0001.jpg/ - This part only appears within objects.object.file
 opa-renditions/thumbnails/3054053-001-012-0001.jpg-thumb.jpg
 
 BECAUSE ONE NEEDED ITEM IS IN objects.object.file, this approach will not work.
