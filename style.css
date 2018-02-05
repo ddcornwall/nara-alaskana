@@ -4,3 +4,7 @@ body {
     }
     /*Colors chosen from https://standards.usa.gov/components/colors/ */
     /* background gray-warm-light, text color federal base black */
+
+a {
+  color: #1F476B;
+}
