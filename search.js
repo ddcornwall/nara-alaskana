@@ -55,7 +55,7 @@ $("#recent").append("</br> Year Records End: " + response.opaResponse.results.re
 $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].description.item.title);
 $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.item.parentFileUnit.parentSeries.title);
 $("#recent").append("</br> Digital object is at <a href = \"" + response.opaResponse.results.result[i].objects.object.file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object.file["@url"] + "</a> </br>" );
-$("#recent").append("<img src = \"" + response.opaResponse.results.result[0].objects.object.thumbnail["@url"] + "\">");
+$("#recent").append("<img class=\"img-responsive\" src = \"" + response.opaResponse.results.result[0].objects.object.thumbnail["@url"] + "\">");
 }
 
 //For FileUnit records
@@ -67,7 +67,7 @@ $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].des
 $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.title);
 $("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
 $("#recent").append("</br> First digital object found at <a href = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "</a> </br>" );
-$("#recent").append("<img src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
+$("#recent").append("<img class=\"img-responsive\" src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
 //The line below fails when there is more than one creating organization. Would need to be able to test for a deal with an array before displaying.
 //$("#recent").append("</br> Creating Organization: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
 }
