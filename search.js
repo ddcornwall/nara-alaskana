@@ -54,9 +54,15 @@ $("#recent").append("</br> Year Records Start: " + response.opaResponse.results.
 $("#recent").append("</br> Year Records End: " + response.opaResponse.results.result[i].description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
 $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].description.item.title);
 $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.item.parentFileUnit.parentSeries.title);
+
+//Workaround for items without digital objects.
+if (typeof response.opaResponse.results.result[i].objects === 'undefined') {
+  $("#recent").append("</br>This record has no associated digital objects. Unknown reason.");
+} else {
 $("#recent").append("</br> Digital object is at <a href = \"" + response.opaResponse.results.result[i].objects.object.file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object.file["@url"] + "</a> </br>" );
-$("#recent").append("<img class=\"img-responsive\" src = \"" + response.opaResponse.results.result[0].objects.object.thumbnail["@url"] + "\">");
-}
+$("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.opaResponse.results.result[i].objects.object.thumbnail["@url"] + "\">");
+} //end no digital object workaround
+} //end item record display.
 
 //For FileUnit records
 if (typeof response.opaResponse.results.result[i].description.fileUnit !== 'undefined') {
@@ -65,16 +71,17 @@ $("#recent").append("</br> Year Records Start: " + response.opaResponse.results.
 $("#recent").append("</br> Year Records End: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
 $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].description.fileUnit.title);
 $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.title);
-$("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
-$("#recent").append("</br> First digital object found at <a href = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "</a> </br>" );
-$("#recent").append("<img class=\"img-responsive\" src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
-//The line below fails when there is more than one creating organization. Would need to be able to test for a deal with an array before displaying.
-//$("#recent").append("</br> Creating Organization: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
-}
 
 //Workaround for items without digital objects - this based on 1/30/18 discovery of NaID 41027079
-if (typeof response.opaResponse.results.result[i].objects !== 'undefined') {
-  //$("#recent").append("</br>This record has no associated digital objects. Unknown reason.");
+if (typeof response.opaResponse.results.result[i].objects === 'undefined') {
+  $("#recent").append("</br>This record has no associated digital objects. Unknown reason.");
+} else {
+$("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
+$("#recent").append("</br> First digital object found at <a href = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "</a> </br>" );
+$("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
+//The line below fails when there is more than one creating organization. Would need to be able to test for a deal with an array before displaying.
+//$("#recent").append("</br> Creating Organization: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
+} //end else if no digital object
 }
 
 //common fields for both fileUnit and item records
