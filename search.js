@@ -47,6 +47,9 @@ $("#recent").append("</br></br>");
 //display results
 for (var i=0; i < response.opaResponse.results.result.length; i++) {
 
+//troubleshooting between types of file level descriptions
+console.log(response.opaResponse.results.result[i].description)
+
 //for item level descriptive Records
 if (typeof response.opaResponse.results.result[i].description.item !== 'undefined') {
 $("#recent").append("Record Cataloged: " + response.opaResponse.results.result[i].description.item.recordHistory.created.dateTime);

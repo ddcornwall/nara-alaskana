@@ -1,8 +1,11 @@
 The purpose of this file is to keep track of things that I think will come in handy when I start the actual code.
 
+2/5/2018 - Use the "c drive" version of index.html to more carefully scrutinize differences between item and file unit display.
+Some file units link to a search that picks up items. Question - Do I really need to retreive fileUnits at all? Or in other words, are there any digital objects without item level description? Intuitively, yes.
+
 2/2/2018
 Implemented items + file units. Finding that file unit results may not be displaying thumbnails any more.
-Need to recheck routines for display. Also search on fairbanks now seems to time out. 
+Need to recheck routines for display. Also search on fairbanks now seems to time out.
 
 2/1/2018
 
