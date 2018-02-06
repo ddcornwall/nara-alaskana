@@ -62,7 +62,7 @@ $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results
 if (typeof response.opaResponse.results.result[i].objects === 'undefined') {
   $("#recent").append("</br>Unable to determine number of digital objects.");
 } else {
-$("#recent").append("</br> First digital object found found at <a href = \"https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object.file["@path"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object.file["@path"] + "</a> </br>" );
+$("#recent").append("</br>This digital object found found at <a href = \"https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object.file["@path"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object.file["@path"] + "</a> </br>" );
 $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.opaResponse.results.result[i].objects.object.thumbnail["@url"] + "\">");
 } //end no digital object workaround
 } //end item record display.
@@ -75,9 +75,10 @@ $("#recent").append("</br> Year Records End: " + response.opaResponse.results.re
 $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].description.fileUnit.title);
 $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.title);
 
-//Workaround for items without digital objects - this based on 1/30/18 discovery of NaID 41027079
+//Workaround for records without objects section. - this based on 1/30/18 discovery of NaID 41027079
 if (typeof response.opaResponse.results.result[i].objects === 'undefined' && typeof response.opaResponse.results.result[i].description.fileUnit !== 'undefined') {
-  $("#recent").append("</br>Unable to determine number of digital objects associated with this record.");
+  $("#recent").append("</br> There are " + response.opaResponse.results.result[i].description.fileUnit.itemCount + " digital objects associated with this record.");
+  $("#recent").append("</br> <img class=\"img-thumbnail\" src = \"placeholder.png \">");
 } else {
 $("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
 $("#recent").append("</br> First digital object found found at <a href = \"https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object[0].file["@path"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object[0].file["@path"] + "</a> </br>" );
