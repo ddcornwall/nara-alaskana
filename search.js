@@ -60,9 +60,9 @@ $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results
 
 //Workaround for items without digital objects.
 if (typeof response.opaResponse.results.result[i].objects === 'undefined') {
-  $("#recent").append("</br>This record has no associated digital objects. Unknown reason.");
+  $("#recent").append("</br>Unable to determine number of digital objects.");
 } else {
-$("#recent").append("</br> Digital object is at <a href = \"" + response.opaResponse.results.result[i].objects.object.file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object.file["@url"] + "</a> </br>" );
+$("#recent").append("</br> First digital object found found at <a href = \"https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object.file["@path"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object.file["@path"] + "</a> </br>" );
 $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.opaResponse.results.result[i].objects.object.thumbnail["@url"] + "\">");
 } //end no digital object workaround
 } //end item record display.
@@ -76,11 +76,11 @@ $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].des
 $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.title);
 
 //Workaround for items without digital objects - this based on 1/30/18 discovery of NaID 41027079
-if (typeof response.opaResponse.results.result[i].objects === 'undefined') {
-  $("#recent").append("</br>This record has no associated digital objects. Unknown reason.");
+if (typeof response.opaResponse.results.result[i].objects === 'undefined' && typeof response.opaResponse.results.result[i].description.fileUnit !== 'undefined') {
+  $("#recent").append("</br>Unable to determine number of digital objects associated with this record.");
 } else {
 $("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
-$("#recent").append("</br> First digital object found at <a href = \"" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "\" target=\"_blank\">" + response.opaResponse.results.result[i].objects.object[0].file["@url"] + "</a> </br>" );
+$("#recent").append("</br> First digital object found found at <a href = \"https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object[0].file["@path"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object[0].file["@path"] + "</a> </br>" );
 $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
 //The line below fails when there is more than one creating organization. Would need to be able to test for a deal with an array before displaying.
 //$("#recent").append("</br> Creating Organization: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
