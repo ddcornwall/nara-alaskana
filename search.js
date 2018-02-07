@@ -62,7 +62,7 @@ $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results
 if (typeof response.opaResponse.results.result[i].objects === 'undefined') {
   $("#recent").append("</br>Unable to determine number of digital objects.");
 } else {
-$("#recent").append("</br>This digital object found found at <a href = \"https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object.file["@path"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object.file["@path"] + "</a> </br>" );
+$("#recent").append("</br>This digital object found found at <a href = \"" + response.opaResponse.results.result[i].objects.object.file["@url"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object.file["@path"] + "</a> </br>" );
 $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.opaResponse.results.result[i].objects.object.thumbnail["@url"] + "\">");
 } //end no digital object workaround
 } //end item record display.
