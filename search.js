@@ -88,7 +88,6 @@ $("#recent").append("</br> First digital object found found at <a href = \"https
 
 //February 2018 NARA provided work around for thumbnails
 filePath=response.opaResponse.results.result[i].objects.object[0].file["@path"].slice(4);
-console.log(filePath);
 
 $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@path"] + "\">");
 //end NARA workaround
