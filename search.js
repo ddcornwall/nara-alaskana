@@ -2,6 +2,9 @@ $(function() { //begin document ready
 
 function loadData() { //begin loadData
 
+//needed for NARA thumbnail Workaround
+var filePath="";
+
 var $recentLinks = $("#recent");
 
 $recentLinks.text("");  //Clears any previous search results
@@ -82,7 +85,14 @@ if (typeof response.opaResponse.results.result[i].objects === 'undefined' && typ
 } else {
 $("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
 $("#recent").append("</br> First digital object found found at <a href = \"https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object[0].file["@path"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object[0].file["@path"] + "</a> </br>" );
-$("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
+
+//February 2018 NARA provided work around for thumbnails
+filePath=response.opaResponse.results.result[i].objects.object[0].file["@path"].slice(4);
+console.log(filePath);
+
+$("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@path"] + "\">");
+//end NARA workaround
+
 //The line below fails when there is more than one creating organization. Would need to be able to test for a deal with an array before displaying.
 //$("#recent").append("</br> Creating Organization: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
 } //end else if no digital object
