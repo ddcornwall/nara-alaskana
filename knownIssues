@@ -1,0 +1,12 @@
+This is documentation of known issues with the National Archives Alaskana Explorer.
+
+Disclaimer - The National Archives Alaskana Explorer has no afiliation with the US National Archives. It's just the source of our data.
+
+### Known Issues
+
+**February 10, 2018**
+
+Problems with the Alaskana Explorer include:
+- Thumbnails of PDF files are broken.
+- Some searches time out after two minutes.
+- User cannot page to next page of result (more not implemented than a bug)
