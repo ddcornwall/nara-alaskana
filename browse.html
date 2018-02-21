@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Subject Browse: National Archives Alaskana Explorer</title>
+    <meta charset="utf-8">
+
+
+    <!--Load bootstrap css, needed for grid layout and responsive text and images-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!--Local css file-->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Local JavaScript-->
+    <script src="browse.js"></script>
+
+
+    <meta name="author" content="Daniel Cornwall">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+
+  <body>
+<div class="container-fluid">
+    <h1>Subject Browse: National Archives (NARA) Alaskana Explorer 0.9</h1>
+
+<p>This page provides browse searches to the US National Archives Alaska Digitization Project and displays ten records.
+
+<p>Available browses</p>
+<p> </p>
+<p> </p>
+
+<button onclick="loadData('new')">Newly cataloged File Unit Records</button>
+<button onclick="loadData('1964Quake')">1964 Earthquake Photos</button>
+<button onclick="loadData('schNews')">BIA School Newspapers</button>
+
+
+
+<p><a href="about.html">About this project</a>
+<p style="border-bottom-style: solid"></p>
+
+<!--Provide brief introduction to materials being displayed -->
+<div id="intro"></div>
+
+
+<!--Load most recent items with select metadata -->
+<div id="recent"></div>
+
+<p></p>
+<p></p>
+<button onclick="loadData('pageFwd')">Next 10 records</button>
+<p>This is a personal project of Daniel Cornwall, a librarian/coder living in Alaska. He can be <a href="https://librarianfromalaska.wordpress.com/about/" target="_blank">contacted through his blog's about page</a></p>.
+</div> <!--End fluid container-->
+
+</body>
+</html>
