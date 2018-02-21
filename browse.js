@@ -26,6 +26,11 @@ $.getJSON( buildSearch(searchType), function( data ) {
 //start function buildSearch
 function buildSearch(searchType) { //begin buildSearch
 
+  //Clears previous results
+  var $recentLinks = $("#recent");
+  $recentLinks.text("");
+
+
   //Clears previous intro text
   var $introLinks = $("#intro");
   $introLinks.text("");
