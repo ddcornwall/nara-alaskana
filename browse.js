@@ -12,11 +12,6 @@ var filePath="";
 function loadData(searchType) {
 
 
-  //Clears previous intro text
-  var $introLinks = $("#recent");
-  $introLinks.text("");
-
-
 //main program
 console.log("This is searchType: ", searchType);
 $.getJSON( buildSearch(searchType), function( data ) {
@@ -32,7 +27,7 @@ $.getJSON( buildSearch(searchType), function( data ) {
 function buildSearch(searchType) { //begin buildSearch
 
   //Clears previous intro text
-  var $introLinks = $("#recent");
+  var $introLinks = $("#intro");
   $introLinks.text("");
 
 
