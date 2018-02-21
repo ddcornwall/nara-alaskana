@@ -9,9 +9,6 @@ var offset=0;
 var filePath="";
 
 
-
-
-
 function loadData(searchType) {
 
 
@@ -33,6 +30,12 @@ $.getJSON( buildSearch(searchType), function( data ) {
 
 //start function buildSearch
 function buildSearch(searchType) { //begin buildSearch
+
+  //Clears previous intro text
+  var $introLinks = $("#recent");
+  $introLinks.text("");
+
+
 var akURL="" //clear out past instances in memory
 
 //initialize akURL with all common parts before customizing
