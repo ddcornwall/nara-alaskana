@@ -1,8 +1,23 @@
 This is documentation of known issues with the National Archives Alaskana Explorer.
 
-Disclaimer - The National Archives Alaskana Explorer has no afiliation with the US National Archives. It's just the source of our data.
+Disclaimer - The National Archives Alaskana Explorer has no affiliation with the US National Archives. It's just the source of our data.
 
-### Known Issues
+### Known Issues and program updates
+
+**February 2/23/2018**
+
+Features ADDED
+- Page forward implemented for browse results.
+- Display fields redone so that title of record shows first
+
+Issues FIXED
+- Thumbnails of PDF files
+
+Known issues
+- Some searches time out after two minutes.
+- User cannot page to next page of results when doing a search.
+- Page forward in browse results breaks when you reach the end of records.
+
 
 **February 10, 2018**
 

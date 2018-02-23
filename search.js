@@ -67,12 +67,13 @@ function displayResults(results) {
 
   //Let user know if search fails
   var naraRequestTimeout = setTimeout(function(){
-  $("#recent").append("</br><p>Search or display timed out. I apologize for the inconvenience.</p>");
+  $("#recent").append("</br><p>Search or display timed out. I apologize for the inconvenience.</br>");
   }, 120000);
 
 
-  //space between text and results
-  $("#recent").append("</br></br>");
+  //space between text and results, report number of results
+$("#recent").append("</br>Up to ten of " + response.opaResponse.results.total + " total results are shown.</br>");
+$("#recent").append("We are unable to provide paging through results at this time. We apologize for the inconvenience.</br>")
 
   //display results
   for (var i=0; i < response.opaResponse.results.result.length; i++) {

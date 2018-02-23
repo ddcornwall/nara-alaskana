@@ -110,6 +110,25 @@ $("#recent").append("<p>Please be patient as it may take up to 90 seconds for re
   pageURL=akURL;
 
   console.log(searchType, " ", akURL);
+} else if (searchType == "taskForcePhotos"){
+//Intro text
+$("#intro").append("<p>Scope and Content of parent series: This series consists of photographs taken between 1972 and 1976 documenting national parks in Alaska. Subjects include flora, fauna, facilities, rivers, mountains, other natural features, towns and villages, and activities of park personnel and visitors.</p>");
+$("#intro").append("<p style=\"border-bottom-style: solid\">Items should be in order by place name.</p> <p></p>")
+$("#recent").append("<p>Please be patient as it may take up to 90 seconds for records to appear. This is a known issue and being worked on.</p>")
+
+//pull records of parent title series 'Alaska Task Force Photographs', naId=2252773
+ akURL=akURL + "description.fileUnit.parentSeries.naId=2252773"
+
+  //limit records to items with descriptions
+  akURL=akURL + "&resultTypes=fileUnit";
+
+  //Sort items by when parent record created
+  akURL=akURL + "&sort=description.title asc";
+
+  //Save pageURL if needed for paging forward
+  pageURL=akURL;
+
+  console.log(searchType, " ", akURL);
 } else if (searchType="pageFwd") {
   offset=offset+9;
   akURL=pageURL + "&offset=" + offset;
@@ -133,7 +152,7 @@ function displayResults(results) {
 
 
   //space between text and results
-  $("#recent").append("</br></br>");
+  $("#recent").append("</br>" + response.opaResponse.results.total + " results are available.</br>");
 
   //display results
   for (var i=0; i < response.opaResponse.results.result.length; i++) {

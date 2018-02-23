@@ -1,5 +1,7 @@
 The purpose of this file is to keep track of things that I think will come in handy when I start the actual code.
 
+2/23/2018 - Need to find way to add https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=41027082&sort=naIdSort%20asc as a browse file. May need to reorganize browse page.
+
 2/6/18 - https://catalog.archives.gov/api/v1/?naIds=41027109, this is a record linked to 386 items but has not "objects" section in it's JSON. It DOES have a field JSON.opaResponse.results.result[0].description.fileUnit.itemCount that has a number equal to the items in the catalog. So we can test for the field being greater than zero. The field appears to be zero in records with an "objects" component.
 
 
