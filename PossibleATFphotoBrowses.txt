@@ -1,0 +1,409 @@
+Ideas for Alaska Photograph browse - tidy up and add to github? 
+
+Record: 1
+Title: Archeology
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 138 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027082
+NaID = 41027082
+
+Record: 2
+Title: Avalanches
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 5 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027084
+NaID = 41027084
+
+Record: 5
+Title: Coastline
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:25
+There are 135 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027162
+NaID = 41027162
+
+Record: 9
+Title: Fauna-Bears
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:27
+There are 72 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027094
+NaID = 41027094
+
+Record: 10
+Title: Fauna-Birds
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:27
+There are 312 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027095
+NaID = 41027095
+
+Record: 11
+Title: Fish
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 30 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027101
+NaID = 41027101
+
+Record: 12
+Title: Fishing
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 111 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027102
+NaID = 41027102
+
+Record: 14
+Title: Flora
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 363 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027106
+NaID = 41027106
+
+Record: 15
+Title: Forest
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 23 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027105
+NaID = 41027105
+
+Record: 16
+Title: Fauna-Fox
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 14 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027096
+NaID = 41027096
+
+Record: 17
+Title: Geology
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 61 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027107
+NaID = 41027107
+
+Record: 19
+Title: Glaciers
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 386 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027109
+NaID = 41027109
+
+Record: 21
+Title: Human Developments
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 134 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027112
+NaID = 41027112
+
+Record: 26
+Title: Industry
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:27
+There are 92 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027115
+NaID = 41027115
+
+Record: 35
+Title: Lakes
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 233 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027119
+NaID = 41027119
+
+Record: 36
+Title: Maps
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:27
+There are 201 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027075
+NaID = 41027075
+
+Record: 37
+Title: Marine Life
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 105 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027154
+NaID = 41027154
+
+Record: 38
+Title: Mining
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 74 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027122
+NaID = 41027122
+
+Record: 44
+Title: Dog Mushing
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:27
+There are 62 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027092
+NaID = 41027092
+
+Record: 45
+Title: Native Arts
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 35 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027130
+
+Record: 53
+Title: People
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 128 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027135
+NaID = 41027135
+
+Record: 54
+Title: Permafrost
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 27 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027134
+NaID = 41027134
+
+Record: 55
+Title: Mountain Ranges
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 35 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027127
+NaID = 41027127
+
+Record: 57
+Title: Recreation
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:30
+There are 540 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027136
+NaID = 41027136
+
+Record: 65
+Title: Sand Dunes
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:27
+There are 21 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027139
+NaID = 41027139
+
+Record: 68
+Title: Fauna-Sea Lions
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 9 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027099
+NaID = 41027099
+
+Record: 69
+Title: Fauna-Seals
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 11 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027100
+NaID = 41027100
+
+Record: 71
+Title: Fauna-Sheep
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 170 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027098
+NaID = 41027098
+
+Record: 72
+Title: Historic Sites
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 91 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027111
+NaID = 41027111
+
+Record: 76
+Title: Storms-Marine
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:27
+There are 7 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027142
+NaID = 41027142
+
+Record: 78
+Title: Ethnography and Subsistence
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:27
+There are 221 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027093
+NaID = 41027093
+
+Record: 85
+Title: Transportation
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 141 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027150
+NaID = 41027150
+
+Record: 86
+Title: Tundra
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 59 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027151
+NaID = 41027151
+
+Record: 89
+Title: Towns Villages
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:28
+There are 262 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027149
+NaID = 41027149
+
+Record: 90
+Title: Visitors
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 58 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027156
+NaID = 41027156
+
+Record: 91
+Title: Volcanic
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 178 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027155
+NaID = 41027155
+
+Record: 92
+Title: Waterfalls
+Parent Series Title: Alaska Task Force Photographs
+Year Records Start: 1972
+Year Records End: 1976
+Record Cataloged: 2016-11-22T16:51:29
+There are 46 digital objects associated with this record.
+
+Full record and additional objects available at https://catalog.archives.gov/id/41027157
+
+
+

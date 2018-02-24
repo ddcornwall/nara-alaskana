@@ -27,8 +27,8 @@ $.getJSON( buildSearch(searchType), function( data ) {
 function buildSearch(searchType) { //begin buildSearch
 
   //Clears previous results
-  var $recentLinks = $("#recent");
-  $recentLinks.text("");
+  //var $recentLinks = $("#recent");
+  //if (offset == 0) {$recentLinks.text("");}
 
 
   //Clears previous intro text
@@ -43,6 +43,7 @@ var akURL="" //clear out past instances in memory
   akURL=akURL+"rows=10&"; //Set rows to 10
 
 if (searchType == "new"){
+  offset=0;
   //pull records mentioning the Alaska Digitization Project as an "alternate control number"
   akURL=akURL + "description.fileUnit.variantControlNumberArray.variantControlNumber=\"Alaska%20Digitization%20Project\""
 
@@ -57,6 +58,7 @@ if (searchType == "new"){
 
   console.log(searchType, " ", akURL);
 } else if (searchType == "newItems") {
+  offset=0;
   //pull records mentioning the Alaska Digitization Project"
   akURL=akURL + "q=\"Alaska%20Digitization%20Project\""
 
@@ -69,6 +71,7 @@ if (searchType == "new"){
   console.log(searchType, " ", akURL);
 //else if below retrieves federally run school newspapers
 } else if (searchType == "schNews"){
+ offset=0;
   //Intro text
   $("#intro").append("<p>Scope and Content of parent series: This series consists of school newspapers from Bureau of Indian Affairs schools throughout Alaska. </p> The newspapers include news about school activities such as sports; dances; special projects by different classes; and programs including plays, 4-H club events, and student council affairs. There are usually articles about events in the town or village including hunting; fishing; arrival of the supply ship, North Star, and other visitors; the arrival of the mail plane; births, deaths, and marriages; and weather conditions. Many of the newspapers include articles written by the children about their accomplishments or interests.</p><p style=\"border-bottom-style: solid\">There are also several newspapers concerning events in the Adult Education program.</p><p></p>");
   $("#recent").append("<p>Please be patient as it may take up to 90 seconds for records to appear. This is a known issue and being worked on.</p>")
@@ -92,6 +95,7 @@ if (searchType == "new"){
 
   console.log(searchType, " ", akURL);
 } else if (searchType == "1964Quake"){
+offset=0;
 //Intro text
 $("#intro").append("<p>Scope and Content of parent series: This series consists of black and white photographs taken by the Alaska District of the U.S. Army Corps of Engineers of the damage done by the 1964 Good Friday Alaska earthquake and the subsequent recovery efforts. The areas represented are Anchorage, the Turnagain Arm residential area, Denali Elementary School, Cordova, Elmendorf Air Force Base, Fort Richardson, Girdwood, Homer, Kodiak, Moose Pass, Nikolski, Seldovia, Seward, Tatitlek, Valdez, and Whittier.</p>");
 $("#intro").append("<p style=\"border-bottom-style: solid\">Items should be in order by community.</p> <p></p>")
@@ -111,6 +115,7 @@ $("#recent").append("<p>Please be patient as it may take up to 90 seconds for re
 
   console.log(searchType, " ", akURL);
 } else if (searchType == "taskForcePhotos"){
+offset=0;
 //Intro text
 $("#intro").append("<p>Scope and Content of parent series: This series consists of photographs taken between 1972 and 1976 documenting national parks in Alaska. Subjects include flora, fauna, facilities, rivers, mountains, other natural features, towns and villages, and activities of park personnel and visitors.</p>");
 $("#intro").append("<p style=\"border-bottom-style: solid\">Items should be in order by place name.</p> <p></p>")
@@ -130,7 +135,7 @@ $("#recent").append("<p>Please be patient as it may take up to 90 seconds for re
 
   console.log(searchType, " ", akURL);
 } else if (searchType="pageFwd") {
-  offset=offset+9;
+  offset=offset+10;
   akURL=pageURL + "&offset=" + offset;
   console.log(akURL);
 }
@@ -141,9 +146,9 @@ return akURL;
 //begin function displayResults
 function displayResults(results) {
 
-  //Clears any previous search results
+  //Clears any previous search results unless paging results
   var $recentLinks = $("#recent");
-  $recentLinks.text("");
+  if (offset == 0) {$recentLinks.text("");}
 
   //Let user know if search fails
   var naraRequestTimeout = setTimeout(function(){
@@ -159,6 +164,9 @@ function displayResults(results) {
 
   //troubleshooting between types of file level descriptions
   console.log(response.opaResponse.results.result[i].description)
+
+  //List result number.
+  $("#recent").append("Record: " + response.opaResponse.results.result[i].num);
 
   //for item level descriptive Records
   if (typeof response.opaResponse.results.result[i].description.item !== 'undefined') {
