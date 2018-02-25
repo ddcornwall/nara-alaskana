@@ -1,6 +1,10 @@
 The purpose of this file is to keep track of things that I think will come in handy when I start the actual code.
 
-2/24/2018 - Once display between different search types is taken care of, try this method to disable buttons:
+2/24/2018 - See if you can construct a link to file unit display lists like this one for Anchorage quake photos:
+https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=24617782&sort=naIdSort%20asc - DONE 2/24/18
+
+
+Once display between different search types is taken care of, try this method to disable buttons:
 https://stackoverflow.com/questions/13831601/disabling-and-enabling-a-html-input-button
 
 idea - do the results erase in the same places as we're doing "offset =0"
