@@ -4,7 +4,21 @@ Disclaimer - The National Archives Alaskana Explorer has no affiliation with the
 
 ### Known Issues and program updates
 
-**February 2/23/2018**
+**February 25, 2018**
+Features ADDED
+- Better access to digital objects within fileUnits
+- Total results displayed
+- Result number displayed per item for better navigation.
+
+Issues FIXED
+- "Next 10 records" button now disables at end of results.
+
+Known issues
+- Some searches time out after two minutes.
+- User cannot page to next page of results when doing a search.
+
+
+**February 23, 2018**
 
 Features ADDED
 - Page forward implemented for browse results.
