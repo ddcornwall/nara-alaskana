@@ -73,7 +73,7 @@ function displayResults(results) {
 
   //space between text and results, report number of results
 $("#recent").append("</br>Up to ten of " + response.opaResponse.results.total + " total results are shown.</br>");
-$("#recent").append("We are unable to provide paging through results at this time. We apologize for the inconvenience.</br>")
+$("#recent").append("We are unable to provide paging through results at this time. We apologize for the inconvenience.</br></br>")
 
 //display results
 for (var i=0; i < response.opaResponse.results.result.length; i++) {
@@ -117,6 +117,7 @@ if (typeof response.opaResponse.results.result[i].objects === 'undefined' && typ
 } else {
 $("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
 $("#recent").append("</br> First digital object found found at <a href = \"https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object[0].file["@path"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object[0].file["@path"] + "</a> </br>" );
+
 
 //February 2018 NARA provided work around for thumbnails
 if (response.opaResponse.results.result[i].objects.object[0].file["@mime"] == "image/jpeg") {
