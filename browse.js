@@ -16,9 +16,15 @@ function loadData(searchType) {
 console.log("This is searchType: ", searchType);
 $.getJSON( buildSearch(searchType), function( data ) {
   response=data;
+  //disable paging if offset is more than search resultFields
+  if ((offset+10) >= response.opaResponse.results.total) {
+  document.getElementById("fwd").disabled = true;
+  $("#endList").append("</br>End of results list.");
+} else {document.getElementById("fwd").disabled = false;}
+
   console.log(response);
   displayResults(response);
- }); //End getJSON
+   }); //End getJSON
 
 
 //define functions
@@ -35,6 +41,9 @@ function buildSearch(searchType) { //begin buildSearch
   var $introLinks = $("#intro");
   $introLinks.text("");
 
+  //Clears previous end of results Notes
+  var $endResults = $("#endList");
+  $endResults.text("");
 
 var akURL="" //clear out past instances in memory
 
