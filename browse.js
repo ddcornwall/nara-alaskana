@@ -14,20 +14,34 @@ function loadData(searchType) {
 
 //main program
 console.log("This is searchType: ", searchType);
+hideUnnededBtn(false);
 $.getJSON( buildSearch(searchType), function( data ) {
   response=data;
-  //disable paging if offset is more than search resultFields
-  if ((offset+10) >= response.opaResponse.results.total) {
-  document.getElementById("fwd").disabled = true;
-  $("#endList").append("</br>End of results list.");
-} else {document.getElementById("fwd").disabled = false;}
-
+  checkResultBtn();
   console.log(response);
   displayResults(response);
    }); //End getJSON
 
 
 //define functions
+
+//Hide next 10 records button until needed
+function hideUnnededBtn(displayed) {
+var x = document.getElementById("fwd");
+if (displayed == true) {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function checkResultBtn() {
+  //disable paging if offset is more than search resultFields
+  if ((offset+10) >= response.opaResponse.results.total) {
+  document.getElementById("fwd").disabled = true;
+  $("#endList").append("</br>End of results list.");
+} else {document.getElementById("fwd").disabled = false;}
+}
 
 //start function buildSearch
 function buildSearch(searchType) { //begin buildSearch
@@ -158,6 +172,9 @@ function displayResults(results) {
   //Clears any previous search results unless paging results
   var $recentLinks = $("#recent");
   if (offset == 0) {$recentLinks.text("");}
+
+  var pageDisplayed=true;
+  hideUnnededBtn(pageDisplayed);
 
   //Let user know if search fails
   var naraRequestTimeout = setTimeout(function(){

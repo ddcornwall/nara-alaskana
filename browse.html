@@ -55,10 +55,25 @@
 
 <p></p>
 <p></p>
-<button id="fwd" onclick="loadData('pageFwd')">Next 10 records</button>
+<div id="rBtn"><button id="fwd" onclick="loadData('pageFwd')">Next 10 records</button></div>
 <div id="endList"></div>
 <p style="padding: 10px">This is a personal project of Daniel Cornwall, a librarian/coder living in Alaska. He can be <a href="https://librarianfromalaska.wordpress.com/about/" target="_blank">contacted through his blog's about page</a></p>.
 </div> <!--End fluid container-->
+
+<script>
+//Hide next 10 records button until needed
+function hideUnnededBtn() {
+var x = document.getElementById("fwd");
+console.log("offset: " + offset + ", " + x);
+if (offset == 0) {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
+hideUnnededBtn();
+</script>
+
 
 </body>
 </html>
