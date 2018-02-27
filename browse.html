@@ -28,8 +28,33 @@
 
 
   <body>
+    <!-- Begin Navbar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            Menu
+          </button>
+          <a class="navbar-brand" href="https://ddcornwall.github.io/portfolio/">Daniel Cornwall</a>
+        </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="browse.html">Browse</a></li>
+          <li><a href="about.html">About this project</a></li>
+          <li><a href="https://librarianfromalaska.wordpress.com/bug-reports/">Contact / Report a Bug</a></li>
+          <li><a href="https://github.com/ddcornwall/nara-alaskana">Github Repo</a></li>
+          <li><a href="https://librarianfromalaska.wordpress.com/">Daniel's Blog</a></li>
+         </ul>
+
+      </div>
+      </div>
+    </nav>
+
+    <!--End Navigation Bar-->
+<section id="Main">
+
 <div class="container-fluid">
-  <p style="padding: 10px"><a href="index.html">Home</a></p>
     <h1>Subject Browse: National Archives (NARA) Alaskana Explorer 0.9</h1>
 
 <p>This page provides browse searches to the US National Archives Alaska Digitization Project and displays ten records.
@@ -43,37 +68,21 @@
 
 
 
-<p style="padding: 10px"><a href="about.html">About this project</a>
 <p style="border-bottom-style: solid"></p>
 
 <!--Provide brief introduction to materials being displayed -->
 <div id="intro"></div>
 
-
-<!--Load most recent items with select metadata -->
+<!--Load most items with select metadata -->
 <div id="recent"></div>
 
-<p></p>
-<p></p>
+<p style="margin-bottom: 100px"></p>
 <div id="rBtn"><button id="fwd" onclick="loadData('pageFwd')">Next 10 records</button></div>
 <div id="endList"></div>
+
 <p style="padding: 10px">This is a personal project of Daniel Cornwall, a librarian/coder living in Alaska. He can be <a href="https://librarianfromalaska.wordpress.com/about/" target="_blank">contacted through his blog's about page</a></p>.
 </div> <!--End fluid container-->
 
-<script>
-//Hide next 10 records button until needed
-function hideUnnededBtn() {
-var x = document.getElementById("fwd");
-console.log("offset: " + offset + ", " + x);
-if (offset == 0) {
-        x.style.display = "none";
-    } else {
-        x.style.display = "block";
-    }
-}
-hideUnnededBtn();
-</script>
-
-
+</section>
 </body>
 </html>

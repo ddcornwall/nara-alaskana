@@ -1,3 +1,5 @@
+//This is a change.
+
 //searchType is shared between buildSearch and getJSON
 var searchType = "";
 
