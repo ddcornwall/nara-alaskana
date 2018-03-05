@@ -83,25 +83,12 @@ if (searchType == "new"){
 
   console.log(searchType, " ", akURL);
 } else if (searchType == "newItems") {
-  offset=20;  //Change offset back to zero after testing is over.
-  //akURL=akURL + "offset=" + offset + "&";
 
   //3-1-2018 effort at new items url
   akURL = akURL + "q=alaska&resultTypes=item,fileUnit&exists=objects&sort=description.recordHistory.changed.modification.dateTime%20desc"
 
   //Save pageURL if needed for paging forward
   pageURL=akURL;
-
-
-  //commenting out prior "alaska digitization project" based effort
-  //pull records mentioning the Alaska Digitization Project"
-  //akURL=akURL + "q=\"Alaska%20Digitization%20Project\""
-
-  //limit records to items with descriptions
-  //akURL=akURL + "&resultTypes=item";
-
-  //Sort items by when record modified
-  //akURL=akURL + "&sort=description.recordHistory.changed.modification.dateTime desc";
 
   console.log(searchType, " ", akURL);
 //else if below retrieves federally run school newspapers
@@ -200,6 +187,27 @@ function displayResults(results) {
   //display results
   for (var i=0; i < response.opaResponse.results.result.length; i++) {
 
+    printRecNum(response.opaResponse.results.result[i]);
+    printTitle(response.opaResponse.results.result[i]);
+    printScope(response.opaResponse.results.result[i]);
+    printParentTitle(response.opaResponse.results.result[i]);
+    printCreator(response.opaResponse.results.result[i]);
+    printRecStart(response.opaResponse.results.result[i]);
+    printRecEnd(response.opaResponse.results.result[i]);
+    printNumObj(response.opaResponse.results.result[i]);
+    displayThumbnail(response.opaResponse.results.result[i]);
+    printObjLoc(response.opaResponse.results.result[i]);
+    printRecLoc(response.opaResponse.results.result[i]);
+    printCataloged(response.opaResponse.results.result[i]);
+    printNaID(response.opaResponse.results.result[i]);
+
+
+  } // end display loop
+  clearTimeout(naraRequestTimeout);
+
+} //end DisplayResults
+
+/*  Use for spare parts
   //troubleshooting between types of file level descriptions
   console.log(response.opaResponse.results.result[i].description)
 
@@ -273,9 +281,8 @@ $("#recent").append("</br> First digital object found at <a href = \"https://cat
   //common fields for both fileUnit and item records
   $("#recent").append("</br> Full record available at <a href=\"https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "\" target=\"_blank\"> https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "</a>");
   $("#recent").append("</br> NaID = " + response.opaResponse.results.result[i].naId + "<p style=\"border-bottom-style: solid\"> ");
-  } // end display loop
-  clearTimeout(naraRequestTimeout);
+*/
 
-} //end DisplayResults
+
 
 } //end loadData
