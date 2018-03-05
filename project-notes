@@ -1,5 +1,30 @@
 The purpose of this file is to keep track of things that I think will come in handy when I start the actual code.
 
+3/5/2018
+
+Decided to refactor my display code to be field centric instead of type of record centric. (perhaps one function per field)
+
+Fields desired:
+
+Record number
+Title
+Scope and Contents (when available - fileUnits, itemAVs)
+Parent Series Title (varies sometimes description.item.parentFileUnit.parentSeries, sometimes description.item.parentSeries)
+Creating organization (test for array)
+Year Records Start
+Year Records End
+Number of digital objects
+Location of first (only) object
+Location of record
+NaID
+
+
+
+3/5/2018
+Seems like comparing "typeof" variables to undefined a better bet than comparining the variables themselves.
+Under no circumstances try to compare objects. Objects are compared using memory location references, not properties. So will never be equal.
+
+
 3/1/2018 part 2
 
 Need better way of testing presence of arrays
