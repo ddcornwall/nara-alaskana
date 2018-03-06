@@ -41,6 +41,7 @@ Full record available at https://catalog.archives.gov/id/12366
 NaID = 12366
 
 Example at https://catalog.archives.gov/id/12366 (Mantanuska - Video)
+JSON - https://catalog.archives.gov/api/v1/?naIds=12366
 
 This means I'll need a new display section for itemAv. Wonder if alaska films might be a good browse
 

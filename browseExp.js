@@ -191,7 +191,7 @@ function displayResults(results) {
     printTitle(response.opaResponse.results.result[i]);
     printScope(response.opaResponse.results.result[i]);
     printParentTitle(response.opaResponse.results.result[i]);
-    printCreator(response.opaResponse.results.result[i]);
+    printCreator(response.opaResponse.results.result[i]); //Needs array testing
     printRecStart(response.opaResponse.results.result[i]);
     printRecEnd(response.opaResponse.results.result[i]);
     printNumObj(response.opaResponse.results.result[i]);
@@ -207,6 +207,18 @@ function displayResults(results) {
 
 //Functions local to DisplayResults
 
+function ShowRecType(response) {
+var recType = "";
+if (typeof response.description.fileUnit !== 'undefined') {
+   recType = "fileUnit";
+} else if (typeof response.description.item !== 'undefined') {
+   recType = "item";
+} else if (typeof response.description.itemAv !== 'undefined') {
+   recType = "itemAv";
+} else {recType="unknown";}
+return recType;
+}
+
 function printRecNum(response) {
   console.log(response);
   $("#recent").append("</br>");
@@ -215,41 +227,79 @@ function printRecNum(response) {
 
 function printTitle(response) {
 $("#recent").append("</br>");
-if (typeof response.description.fileUnit !== 'undefined') {
+
+var recType = ShowRecType(response);
+if (recType === "fileUnit") {
    $("#recent").append("Title: " + response.description.fileUnit.title);
-} else if (typeof response.description.item !== 'undefined') {
+} else if (recType === "item") {
   $("#recent").append("Title: " + response.description.item.title);
-} else if (typeof response.description.itemAv !== 'undefined') {
+} else if (recType === "itemAv") {
     $("#recent").append("Title: " + description.itemAv.title);
+} else {
+  $("#recent").append("Title: Unable to determine. Unknown");
+  console.log("Title display error" + response);
 }
 } //End print title
 
+
 function printScope(response) {
-  $("#recent").append("</br>");
-  if (typeof response.description.itemAv !== 'undefined') {
+  var recType = ShowRecType(response);
+  if (recType === "itemAv") {
+    $("#recent").append("</br>");
     $("#recent").append("Scope and Contents: " + response.description.itemAv.scopeAndContentNote);
   }
 }
 
 function printParentTitle(response) {
   $("#recent").append("</br>");
-  $("#recent").append("Parent Series Title: Not implemented");
+  var recType = ShowRecType(response);
+  if (recType === "fileUnit") {
+     $("#recent").append("Parent Series: " + response.description.fileUnit.parentSeries.title);
+  } else if (recType === "item"  && typeof response.description.item.parentFileUnit.parentSeries.title != "undefined") {
+    $("#recent").append("Parent Series: " + response.description.item.parentFileUnit.parentSeries.title);
+  } else if (recType === "item"  && typeof description.item.parentSeries != "undefined") {
+    $("#recent").append("Parent Series: " + description.item.parentSeries);
+  } else if (recType === "itemAv") {
+      $("#recent").append("Parent Series: " + description.itemAv.parentSeries.title);
+  } else {
+      $("#recent").append("Parent Series: Unable to determine. Unknown error.");
+      console.log("Parent series display error" + response);
+    }
 }
 
+//This needs an array test
 function printCreator(response) {
   $("#recent").append("</br>");
     $("#recent").append("Creating Agency: Not implemented");
 }
 
 function printRecStart(response) {
-  $("#recent").append("</br>");
-    $("#recent").append("Year Records Start: Not implemented");
-}
+  var recType = ShowRecType(response);
+  if (recType === "fileUnit") {
+     $("#recent").append("</br> Year Records Start: " + response.description.fileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year);
+  } else if (recType === "item") {
+    $("#recent").append("</br> Year Records Start: " + response.description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year);
+  } else if (recType === "itemAv") {
+      $("#recent").append("</br> Year Records Start: " + response.description.itemAv.parentSeries.inclusiveDates.inclusiveStartDate);
+    } else {
+        $("#recent").append("Records Start: Unable to determine. Unknown error.");
+        console.log("Records start display error" + response);
+      }
+} // end printRecStart
 
 function printRecEnd(response) {
-  $("#recent").append("</br>");
-    $("#recent").append("Year Records End: Not implemented");
-}
+  var recType = ShowRecType(response);
+  if (recType === "fileUnit") {
+     $("#recent").append("</br> Year Records End: " + response.description.fileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
+  } else if (recType === "item") {
+    $("#recent").append("</br> Year Records End: " + response.description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
+  } else if (recType === "itemAv") {
+      $("#recent").append("</br> Year Records End: " + response.description.itemAv.parentSeries.inclusiveDates.inclusiveEndDate);
+    } else {
+        $("#recent").append("Records End: Unable to determine. Unknown error.");
+        console.log("Records End display error" + response);
+      }
+} //end printRecEnd
 
 function printNumObj(response) {
   $("#recent").append("</br>");
@@ -285,17 +335,9 @@ function printNaID(response) {
 } //end DisplayResults
 
 /*  Use for spare parts
-  //troubleshooting between types of file level descriptions
-  console.log(response.opaResponse.results.result[i].description)
 
-  //List result number.
-  $("#recent").append("Record: " + response.opaResponse.results.result[i].num);
+    $("#recent").append("</br> Parent Series Title: " + response.description.item.parentFileUnit.parentSeries.title);
 
-  //for item level descriptive Records
-  if (typeof response.opaResponse.results.result[i].description.item !== 'undefined') {
-    $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].description.item.title);
-    $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.item.parentFileUnit.parentSeries.title);
-    $("#recent").append("</br> Year Records Start: " + response.opaResponse.results.result[i].description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year);
     $("#recent").append("</br> Year Records End: " + response.opaResponse.results.result[i].description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
     $("#recent").append("</br> Record Cataloged: " + response.opaResponse.results.result[i].description.item.recordHistory.created.dateTime);
 
@@ -319,7 +361,7 @@ function printNaID(response) {
   if (typeof response.opaResponse.results.result[i].description.fileUnit !== 'undefined') {
   $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].description.fileUnit.title);
   $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.title);
-  $("#recent").append("</br> Year Records Start: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year);
+
   $("#recent").append("</br> Year Records End: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
   $("#recent").append("</br> Record Cataloged: " + response.opaResponse.results.result[i].description.fileUnit.recordHistory.created.dateTime);
 
