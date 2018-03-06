@@ -200,10 +200,78 @@ function displayResults(results) {
     printRecLoc(response.opaResponse.results.result[i]);
     printCataloged(response.opaResponse.results.result[i]);
     printNaID(response.opaResponse.results.result[i]);
-
+   $("#recent").append("</br>=============================</br>");
 
   } // end display loop
   clearTimeout(naraRequestTimeout);
+
+//Functions local to DisplayResults
+
+function printRecNum(response) {
+  console.log(response);
+  $("#recent").append("</br>");
+  $("#recent").append("Record: Not implemented");
+}
+
+function printTitle(response) {
+$("#recent").append("</br>");
+  $("#recent").append("Title: Not implemented");
+}
+function printScope(response) {
+  $("#recent").append("</br>");
+  $("#recent").append("Scope and Contents: Not implemented");
+}
+
+function printParentTitle(response) {
+  $("#recent").append("</br>");
+  $("#recent").append("Parent Series Title: Not implemented");
+}
+
+function printCreator(response) {
+  $("#recent").append("</br>");
+    $("#recent").append("Creating Agency: Not implemented");
+}
+
+function printRecStart(response) {
+  $("#recent").append("</br>");
+    $("#recent").append("Year Records Start: Not implemented");
+}
+
+function printRecEnd(response) {
+  $("#recent").append("</br>");
+    $("#recent").append("Year Records End: Not implemented");
+}
+
+function printNumObj(response) {
+  $("#recent").append("</br>");
+    $("#recent").append("Number of digital objects: Not implemented");
+}
+
+function displayThumbnail(response) {
+  $("#recent").append("</br>");
+    $("#recent").append("Thumbnail: Not implemented");
+}
+
+//Do I really need this if I have the thumbnail and the main record?
+function printObjLoc(response) {
+  $("#recent").append("</br>");
+    $("#recent").append("First/Only ojbect location: Not implemented");
+}
+
+function printRecLoc(response) {
+  $("#recent").append("</br>");
+    $("#recent").append("View full record in NARA Catalog: Not implemented");
+}
+
+function printCataloged(response) {
+  $("#recent").append("</br>");
+    $("#recent").append("Date Cataloged: Not implemented");
+}
+
+function printNaID(response) {
+  $("#recent").append("</br>");
+    $("#recent").append("NaID: Not implemented");
+}
 
 } //end DisplayResults
 
