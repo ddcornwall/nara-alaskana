@@ -210,16 +210,25 @@ function displayResults(results) {
 function printRecNum(response) {
   console.log(response);
   $("#recent").append("</br>");
-  $("#recent").append("Record: Not implemented");
+  $("#recent").append("Record: " + response.num);
 }
 
 function printTitle(response) {
 $("#recent").append("</br>");
-  $("#recent").append("Title: Not implemented");
+if (typeof response.description.fileUnit !== 'undefined') {
+   $("#recent").append("Title: " + response.description.fileUnit.title);
+} else if (typeof response.description.item !== 'undefined') {
+  $("#recent").append("Title: " + response.description.item.title);
+} else if (typeof response.description.itemAv !== 'undefined') {
+    $("#recent").append("Title: " + description.itemAv.title);
 }
+} //End print title
+
 function printScope(response) {
   $("#recent").append("</br>");
-  $("#recent").append("Scope and Contents: Not implemented");
+  if (typeof response.description.itemAv !== 'undefined') {
+    $("#recent").append("Scope and Contents: " + response.description.itemAv.scopeAndContentNote);
+  }
 }
 
 function printParentTitle(response) {
