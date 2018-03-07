@@ -90,6 +90,9 @@ if (searchType == "new"){
   //Save pageURL if needed for paging forward
   pageURL=akURL;
 
+  //3-7-2018 Testing single record. Comment out when not in use
+  //akURL = "https://catalog.archives.gov/api/v1/?naIds=40032258";
+
   console.log(searchType, " ", akURL);
 //else if below retrieves federally run school newspapers
 } else if (searchType == "schNews"){
@@ -253,14 +256,20 @@ function printScope(response) {
 function printParentTitle(response) {
   $("#recent").append("</br>");
   var recType = ShowRecType(response);
+  console.log(recType);
   if (recType === "fileUnit") {
+    console.log("fileUnit was tripped");
      $("#recent").append("Parent Series: " + response.description.fileUnit.parentSeries.title);
-  } else if (recType === "item"  && typeof response.description.item.parentFileUnit.parentSeries.title != "undefined") {
+  } else if (recType === "item"  && typeof response.description.item.parentFileUnit != "undefined") {
+  console.log("Line 263 else if item && typeof response.description.item.parentFileUnit not undefined) was tripped");
     $("#recent").append("Parent Series: " + response.description.item.parentFileUnit.parentSeries.title);
-  } else if (recType === "item"  && typeof description.item.parentSeries != "undefined") {
-    $("#recent").append("Parent Series: " + description.item.parentSeries);
+  } else if (recType === "item"  && typeof response.description.item.parentSeries != "undefined") {
+  console.log("Line 266 - else if item  && typeof response.description.item.parentSeries not undefined) was tripped.");
+  console.log(response.description.item.parentSeries);
+    $("#recent").append("Parent Series: " + response.description.item.parentSeries.title);
   } else if (recType === "itemAv") {
-      $("#recent").append("Parent Series: " + description.itemAv.parentSeries.title);
+      console.log("else if itemAv) was tripped");
+      $("#recent").append("Parent Series: " + response.description.itemAv.parentSeries.title);
   } else {
       $("#recent").append("Parent Series: Unable to determine. Unknown error.");
       console.log("Parent series display error" + response);
@@ -277,8 +286,10 @@ function printRecStart(response) {
   var recType = ShowRecType(response);
   if (recType === "fileUnit") {
      $("#recent").append("</br> Year Records Start: " + response.description.fileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year);
-  } else if (recType === "item") {
+  } else if (recType === "item"  && typeof response.description.item.parentFileUnit != "undefined") {
     $("#recent").append("</br> Year Records Start: " + response.description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year);
+  } else if (recType === "item"  && typeof response.description.item.parentSeries != "undefined") {
+    $("#recent").append("</br> Year Records Start: " + response.description.item.parentSeries.inclusiveDates.inclusiveStartDate.year);
   } else if (recType === "itemAv") {
       $("#recent").append("</br> Year Records Start: " + response.description.itemAv.parentSeries.inclusiveDates.inclusiveStartDate);
     } else {
@@ -291,8 +302,10 @@ function printRecEnd(response) {
   var recType = ShowRecType(response);
   if (recType === "fileUnit") {
      $("#recent").append("</br> Year Records End: " + response.description.fileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
-  } else if (recType === "item") {
-    $("#recent").append("</br> Year Records End: " + response.description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
+   } else if (recType === "item"  && typeof response.description.item.parentFileUnit != "undefined") {
+     $("#recent").append("</br> Year Records End: " + response.description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
+   } else if (recType === "item"  && typeof response.description.item.parentSeries != "undefined") {
+     $("#recent").append("</br> Year Records End: " + response.description.item.parentSeries.inclusiveDates.inclusiveEndDate.year);
   } else if (recType === "itemAv") {
       $("#recent").append("</br> Year Records End: " + response.description.itemAv.parentSeries.inclusiveDates.inclusiveEndDate);
     } else {
@@ -302,9 +315,15 @@ function printRecEnd(response) {
 } //end printRecEnd
 
 function printNumObj(response) {
-  $("#recent").append("</br>");
-    $("#recent").append("Number of digital objects: Not implemented");
+  if (typeof response.objects === 'undefined' && recType === "fileUnit") {
+    $("#recent").append("</br> There are " + response.description.fileUnit.itemCount + " digital objects associated with this record.");
+    $("#recent").append("</br> <a href=\"https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=" + response.naId + "&sort=naIdSort%20asc" + "\" target=\"_blank\">View digital objects in National Archives Catalog</a>");
+      } else if (typeof response.objects.object.length === 'undefined') {
+  $("#recent").append("</br> There is one digital object associated with this record.");
+  }  else {
+$("#recent").append("</br> There are " + response.objects.object.length + " digital objects associated with this record.");
 }
+} // End printNumObj
 
 function displayThumbnail(response) {
   $("#recent").append("</br>");
@@ -336,9 +355,6 @@ function printNaID(response) {
 
 /*  Use for spare parts
 
-    $("#recent").append("</br> Parent Series Title: " + response.description.item.parentFileUnit.parentSeries.title);
-
-    $("#recent").append("</br> Year Records End: " + response.opaResponse.results.result[i].description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
     $("#recent").append("</br> Record Cataloged: " + response.opaResponse.results.result[i].description.item.recordHistory.created.dateTime);
 
   //Workaround for items without digital objects. 3/1/18 - need better description
