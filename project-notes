@@ -1,5 +1,13 @@
 The purpose of this file is to keep track of things that I think will come in handy when I start the actual code.
 
+3/8/2018
+
+Decided not to implement first digital object location at this time. If I want to in the future, start with:
+
+if (typeof response.objects.object.length === 'undefined') {
+//$("#recent").append("</br>This digital object found found at <a href = \"" + response.objects.object.file["@url"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.objects.object.file["@path"] + "</a> </br>" );
+
+
 3/5/2018
 
 Decided to refactor my display code to be field centric instead of type of record centric. (perhaps one function per field)

@@ -91,7 +91,11 @@ if (searchType == "new"){
   pageURL=akURL;
 
   //3-7-2018 Testing single record. Comment out when not in use
-  //akURL = "https://catalog.archives.gov/api/v1/?naIds=40032258";
+  //akURL = "https://catalog.archives.gov/api/v1/?naIds=40032258";  //Presidential Daily Diary
+  //akURL = "https://catalog.archives.gov/api/v1/?naIds=12366";  // video
+  //akURL = "https://catalog.archives.gov/api/v1/?naIds=55286370 //Inmate File of Borisa Rekecevich
+  //akURL = "https://catalog.archives.gov/api/v1/?naIds=66330188 // Howard Baker subject files
+
 
   console.log(searchType, " ", akURL);
 //else if below retrieves federally run school newspapers
@@ -194,16 +198,16 @@ function displayResults(results) {
     printTitle(response.opaResponse.results.result[i]);
     printScope(response.opaResponse.results.result[i]);
     printParentTitle(response.opaResponse.results.result[i]);
-    printCreator(response.opaResponse.results.result[i]); //Needs array testing
+    // printCreator(response.opaResponse.results.result[i]); Needs array testing, will be implemented in future version
     printRecStart(response.opaResponse.results.result[i]);
     printRecEnd(response.opaResponse.results.result[i]);
     printNumObj(response.opaResponse.results.result[i]);
     displayThumbnail(response.opaResponse.results.result[i]);
-    printObjLoc(response.opaResponse.results.result[i]);
+    // printObjLoc(response.opaResponse.results.result[i]); - likely not needed might come back in future version
     printRecLoc(response.opaResponse.results.result[i]);
     printCataloged(response.opaResponse.results.result[i]);
     printNaID(response.opaResponse.results.result[i]);
-   $("#recent").append("</br>=============================</br>");
+   $("#recent").append("<p style=\"border-bottom-style: solid\"></p>" );
 
   } // end display loop
   clearTimeout(naraRequestTimeout);
@@ -220,13 +224,13 @@ if (typeof response.description.fileUnit !== 'undefined') {
    recType = "itemAv";
 } else {recType="unknown";}
 return recType;
-}
+} // End ShowRecType
 
 function printRecNum(response) {
   console.log(response);
   $("#recent").append("</br>");
   $("#recent").append("Record: " + response.num);
-}
+} // End printRecNum
 
 function printTitle(response) {
 $("#recent").append("</br>");
@@ -237,7 +241,7 @@ if (recType === "fileUnit") {
 } else if (recType === "item") {
   $("#recent").append("Title: " + response.description.item.title);
 } else if (recType === "itemAv") {
-    $("#recent").append("Title: " + description.itemAv.title);
+    $("#recent").append("Title: " + response.description.itemAv.title);
 } else {
   $("#recent").append("Title: Unable to determine. Unknown");
   console.log("Title display error" + response);
@@ -251,30 +255,24 @@ function printScope(response) {
     $("#recent").append("</br>");
     $("#recent").append("Scope and Contents: " + response.description.itemAv.scopeAndContentNote);
   }
-}
+} //End print scope
 
 function printParentTitle(response) {
   $("#recent").append("</br>");
   var recType = ShowRecType(response);
-  console.log(recType);
-  if (recType === "fileUnit") {
-    console.log("fileUnit was tripped");
-     $("#recent").append("Parent Series: " + response.description.fileUnit.parentSeries.title);
+    if (recType === "fileUnit") {
+       $("#recent").append("Parent Series: " + response.description.fileUnit.parentSeries.title);
   } else if (recType === "item"  && typeof response.description.item.parentFileUnit != "undefined") {
-  console.log("Line 263 else if item && typeof response.description.item.parentFileUnit not undefined) was tripped");
-    $("#recent").append("Parent Series: " + response.description.item.parentFileUnit.parentSeries.title);
+      $("#recent").append("Parent Series: " + response.description.item.parentFileUnit.parentSeries.title);
   } else if (recType === "item"  && typeof response.description.item.parentSeries != "undefined") {
-  console.log("Line 266 - else if item  && typeof response.description.item.parentSeries not undefined) was tripped.");
-  console.log(response.description.item.parentSeries);
-    $("#recent").append("Parent Series: " + response.description.item.parentSeries.title);
+      $("#recent").append("Parent Series: " + response.description.item.parentSeries.title);
   } else if (recType === "itemAv") {
-      console.log("else if itemAv) was tripped");
-      $("#recent").append("Parent Series: " + response.description.itemAv.parentSeries.title);
+        $("#recent").append("Parent Series: " + response.description.itemAv.parentSeries.title);
   } else {
       $("#recent").append("Parent Series: Unable to determine. Unknown error.");
       console.log("Parent series display error" + response);
     }
-}
+} // End printParentTitle
 
 //This needs an array test
 function printCreator(response) {
@@ -291,7 +289,7 @@ function printRecStart(response) {
   } else if (recType === "item"  && typeof response.description.item.parentSeries != "undefined") {
     $("#recent").append("</br> Year Records Start: " + response.description.item.parentSeries.inclusiveDates.inclusiveStartDate.year);
   } else if (recType === "itemAv") {
-      $("#recent").append("</br> Year Records Start: " + response.description.itemAv.parentSeries.inclusiveDates.inclusiveStartDate);
+      $("#recent").append("</br> Year Records Start: " + response.description.itemAv.parentSeries.inclusiveDates.inclusiveStartDate.year);
     } else {
         $("#recent").append("Records Start: Unable to determine. Unknown error.");
         console.log("Records start display error" + response);
@@ -307,7 +305,7 @@ function printRecEnd(response) {
    } else if (recType === "item"  && typeof response.description.item.parentSeries != "undefined") {
      $("#recent").append("</br> Year Records End: " + response.description.item.parentSeries.inclusiveDates.inclusiveEndDate.year);
   } else if (recType === "itemAv") {
-      $("#recent").append("</br> Year Records End: " + response.description.itemAv.parentSeries.inclusiveDates.inclusiveEndDate);
+      $("#recent").append("</br> Year Records End: " + response.description.itemAv.parentSeries.inclusiveDates.inclusiveEndDate.year);
     } else {
         $("#recent").append("Records End: Unable to determine. Unknown error.");
         console.log("Records End display error" + response);
@@ -315,6 +313,7 @@ function printRecEnd(response) {
 } //end printRecEnd
 
 function printNumObj(response) {
+  var recType = ShowRecType(response);
   if (typeof response.objects === 'undefined' && recType === "fileUnit") {
     $("#recent").append("</br> There are " + response.description.fileUnit.itemCount + " digital objects associated with this record.");
     $("#recent").append("</br> <a href=\"https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=" + response.naId + "&sort=naIdSort%20asc" + "\" target=\"_blank\">View digital objects in National Archives Catalog</a>");
@@ -325,84 +324,57 @@ $("#recent").append("</br> There are " + response.objects.object.length + " digi
 }
 } // End printNumObj
 
+//3-8-2018 still in progress
 function displayThumbnail(response) {
-  $("#recent").append("</br>");
-    $("#recent").append("Thumbnail: Not implemented");
-}
+   $("#recent").append("</br>");
+  if (typeof response.objects === 'undefined' ) {
+    $("#recent").append("No thumbnail available");
+  } else if (typeof response.objects.object.length === 'undefined') {
+   $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object.thumbnail["@url"] + "\">");
+   //February 2018 NARA provided work around for thumbnails
+   } else if (response.objects.object[0].file["@mime"] == "image/jpeg") {
+   filePath=response.objects.object[0].file["@path"].slice(4);
+   $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object[0].thumbnail["@path"] + "\">");
+   } else if (response.objects.object[0].file["@mime"] == "image/pdf") {
+   $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
+   } else if (typeof response.objects.object[0].thumbnail === 'undefined') { // this needs to be kept even if workaround goes away
+   $("#recent").append("No thumbnail available");
+   }
 
-//Do I really need this if I have the thumbnail and the main record?
+} //end displayThumbnail
+
+//Leaving unimplemented for now, may be enough to have thumbnail and record.
 function printObjLoc(response) {
   $("#recent").append("</br>");
-    $("#recent").append("First/Only ojbect location: Not implemented");
-}
+    $("#recent").append("First/Only object location: Not implemented");
+} //End printObjLoc
 
 function printRecLoc(response) {
-  $("#recent").append("</br>");
-    $("#recent").append("View full record in NARA Catalog: Not implemented");
-}
+  $("#recent").append("</br><a href=\"https://catalog.archives.gov/id/" + response.naId + "\" target=\"_blank\">View full record in NARA Catalog</a>");
+} //End printRecLoc
 
 function printCataloged(response) {
-  $("#recent").append("</br>");
-    $("#recent").append("Date Cataloged: Not implemented");
+var recType = ShowRecType(response);
+if (recType === "fileUnit") {
+   $("#recent").append("</br> Record Cataloged: " + response.description.fileUnit.recordHistory.created.dateTime);
+} else if (recType === "item") {
+  $("#recent").append("</br> Record Cataloged: " + response.description.item.recordHistory.created.dateTime);
+} else if (recType === "itemAv") {
+    $("#recent").append("</br> Record Cataloged: " + response.description.itemAv.recordHistory.created.dateTime);
+} else {
+  $("#recent").append("Title: Unable to determine. Unknown");
+  console.log("Date Cataloged display error" + response);
 }
+} //End printCataloged
 
 function printNaID(response) {
-  $("#recent").append("</br>");
-    $("#recent").append("NaID: Not implemented");
-}
+  $("#recent").append("</br> NaID = " + response.naId);
+} //End printNaID
 
 } //end DisplayResults
 
 /*  Use for spare parts
 
-    $("#recent").append("</br> Record Cataloged: " + response.opaResponse.results.result[i].description.item.recordHistory.created.dateTime);
-
-  //Workaround for items without digital objects. 3/1/18 - need better description
-
-  if (typeof response.opaResponse.results.result[i].objects === 'undefined') {
-    $("#recent").append("</br>Unable to determine number of digital objects.");
-
-  } else if (typeof response.opaResponse.results.result[i].objects.object.length === 'undefined') {
-  $("#recent").append("</br>This digital object found found at <a href = \"" + response.opaResponse.results.result[i].objects.object.file["@url"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object.file["@path"] + "</a> </br>" );
-  $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.opaResponse.results.result[i].objects.object.thumbnail["@url"] + "\">");
-} else {
-  $("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
-  $("#recent").append("</br> First digital object found found at <a href = \"https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object[0].file["@path"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object[0].file["@path"] + "</a> </br>" );
-}
-
-//  }//end no digital object workaround
-  } //end item record display.
-
-  //For FileUnit records
-  if (typeof response.opaResponse.results.result[i].description.fileUnit !== 'undefined') {
-  $("#recent").append("</br> Title: " + response.opaResponse.results.result[i].description.fileUnit.title);
-  $("#recent").append("</br> Parent Series Title: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.title);
-
-  $("#recent").append("</br> Year Records End: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
-  $("#recent").append("</br> Record Cataloged: " + response.opaResponse.results.result[i].description.fileUnit.recordHistory.created.dateTime);
-
-  //Workaround for records without objects section. - this based on 1/30/18 discovery of NaID 41027079
-  console.log("response.opaResponse.results.result[i].objects.object.length is " + response.opaResponse.results.result[i].objects.object.length)
-  if (typeof response.opaResponse.results.result[i].objects === 'undefined' && typeof response.opaResponse.results.result[i].description.fileUnit !== 'undefined') {
-    $("#recent").append("</br> There are " + response.opaResponse.results.result[i].description.fileUnit.itemCount + " digital objects associated with this record.");
-    $("#recent").append("</br> <a href=\"https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=" + response.opaResponse.results.result[i].naId + "&sort=naIdSort%20asc" + "\" target=\"_blank\">View digital objects in National Archives Catalog</a>");
-    //$("#recent").append("</br> <img class=\"img-thumbnail\" src = \"Placeholder.png \">");
-  } else if (typeof response.opaResponse.results.result[i].objects.object.length === 'undefined') {
-  $("#recent").append("</br> There is one digital object associated with this record.");
-  $("#recent").append("</br> Digital object available at at <a href = \"https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object.file["@path"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object.file["@path"] + "</a> </br>" );
-}  else {
-$("#recent").append("</br> There are " + response.opaResponse.results.result[i].objects.object.length + " digital objects associated with this record.");
-$("#recent").append("</br> First digital object found at <a href = \"https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object[0].file["@path"] + "\" target=\"_blank\"> https://catalog.archives.gov/catalogmedia" + response.opaResponse.results.result[i].objects.object[0].file["@path"] + "</a> </br>" );
-//}
-  //February 2018 NARA provided work around for thumbnails
-  if (response.opaResponse.results.result[i].objects.object[0].file["@mime"] == "image/jpeg") {
-    filePath=response.opaResponse.results.result[i].objects.object[0].file["@path"].slice(4);
-    $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@path"] + "\">");
-  } else if (response.opaResponse.results.result[i].objects.object[0].file["@mime"] == "image/pdf") {
-  $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.opaResponse.results.result[i].objects.object[0].thumbnail["@url"] + "\">");
-} else if (response.opaResponse.results.result[i].objects.object[0].thumbnail === 'undefined') { // this needs to be kept even if workaround goes away
-  $("#recent").append("No thumbnail available");
-}
 
 
    //end NARA thumbnail workaround
