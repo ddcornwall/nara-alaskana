@@ -1,4 +1,4 @@
-//This is a change.
+
 
 //searchType is shared between buildSearch and getJSON
 var searchType = "";
@@ -91,11 +91,7 @@ if (searchType == "new"){
   pageURL=akURL;
 
   //3-7-2018 Testing single record. Comment out when not in use
-  //akURL = "https://catalog.archives.gov/api/v1/?naIds=40032258";  //Presidential Daily Diary
-  //akURL = "https://catalog.archives.gov/api/v1/?naIds=12366";  // video
-  //akURL = "https://catalog.archives.gov/api/v1/?naIds=55286370 //Inmate File of Borisa Rekecevich
-  //akURL = "https://catalog.archives.gov/api/v1/?naIds=66330188 // Howard Baker subject files
-
+ //Put record here when testing
 
   console.log(searchType, " ", akURL);
 //else if below retrieves federally run school newspapers
@@ -227,7 +223,6 @@ return recType;
 } // End ShowRecType
 
 function printRecNum(response) {
-  console.log(response);
   $("#recent").append("</br>");
   $("#recent").append("Record: " + response.num);
 } // End printRecNum
@@ -326,18 +321,22 @@ $("#recent").append("</br> There are " + response.objects.object.length + " digi
 
 //3-8-2018 still in progress
 function displayThumbnail(response) {
+  var recType = ShowRecType(response);
    $("#recent").append("</br>");
-  if (typeof response.objects === 'undefined' ) {
+  //March 2018 - trimming paths and prepends are part of a NARA provided workaround while they reorganize files.
+  if (typeof response.objects === 'undefined' || recType === 'itemAv' ) {
     $("#recent").append("No thumbnail available");
   } else if (typeof response.objects.object.length === 'undefined') {
-   $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object.thumbnail["@url"] + "\">");
-   //February 2018 NARA provided work around for thumbnails
-   } else if (response.objects.object[0].file["@mime"] == "image/jpeg") {
-   filePath=response.objects.object[0].file["@path"].slice(4);
-   $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object[0].thumbnail["@path"] + "\">");
+     filePath=response.objects.object.file["@path"].slice(4);
+     $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object.thumbnail["@path"] + "\">");
+ } else if (response.objects.object[0].file["@mime"] == "image/jpeg") {
+      filePath=response.objects.object[0].file["@path"].slice(4);
+      $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object[0].thumbnail["@path"] + "\">");
    } else if (response.objects.object[0].file["@mime"] == "image/pdf") {
-   $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
-   } else if (typeof response.objects.object[0].thumbnail === 'undefined') { // this needs to be kept even if workaround goes away
+      $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
+ } else if (response.objects.object[0].thumbnail["@mime"] == "image/jpeg") {
+    $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
+ } else if (typeof response.objects.object[0].thumbnail === 'undefined') { // this needs to be kept even if workaround goes away
    $("#recent").append("No thumbnail available");
    }
 
@@ -372,24 +371,6 @@ function printNaID(response) {
 } //End printNaID
 
 } //end DisplayResults
-
-/*  Use for spare parts
-
-
-
-   //end NARA thumbnail workaround
-
-
-    //The line below fails when there is more than one creating organization. Would need to be able to test for a deal with an array before displaying.
-  //$("#recent").append("</br> Creating Organization: " + response.opaResponse.results.result[i].description.fileUnit.parentSeries.creatingOrganizationArray.creatingOrganization.creator.termName);
-  } //end else if no digital object
-  }
-
-  //common fields for both fileUnit and item records
-  $("#recent").append("</br> Full record available at <a href=\"https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "\" target=\"_blank\"> https://catalog.archives.gov/id/" + response.opaResponse.results.result[i].naId + "</a>");
-  $("#recent").append("</br> NaID = " + response.opaResponse.results.result[i].naId + "<p style=\"border-bottom-style: solid\"> ");
-*/
-
 
 
 } //end loadData
