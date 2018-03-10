@@ -91,7 +91,9 @@ if (searchType == "new"){
   pageURL=akURL;
 
   //3-7-2018 Testing single record. Comment out when not in use
- //Put record here when testing
+ //akURL="https://catalog.archives.gov/api/v1/?naIds=";
+ akURL="https://catalog.archives.gov/api/v1/?naIds=24731415";
+
 
   console.log(searchType, " ", akURL);
 //else if below retrieves federally run school newspapers
@@ -322,23 +324,26 @@ $("#recent").append("</br> There are " + response.objects.object.length + " digi
 //3-8-2018 still in progress
 function displayThumbnail(response) {
   var recType = ShowRecType(response);
+
    $("#recent").append("</br>");
   //March 2018 - trimming paths and prepends are part of a NARA provided workaround while they reorganize files.
   if (typeof response.objects === 'undefined' || recType === 'itemAv' ) {
-    $("#recent").append("No thumbnail available");
+      $("#recent").append("No thumbnail available");
   } else if (typeof response.objects.object.length === 'undefined') {
      filePath=response.objects.object.file["@path"].slice(4);
      $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object.thumbnail["@path"] + "\">");
- } else if (response.objects.object[0].file["@mime"] == "image/jpeg") {
-      filePath=response.objects.object[0].file["@path"].slice(4);
+  } else if (response.objects.object[0].file["@mime"] == "image/jpeg") {
+        filePath=response.objects.object[0].file["@path"].slice(4);
       $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object[0].thumbnail["@path"] + "\">");
-   } else if (response.objects.object[0].file["@mime"] == "image/pdf") {
+console.log("https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object[0].thumbnail["@path"])
+  } else if (response.objects.object[0].file["@mime"] == "image/pdf") {
+        $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
+  } else if (typeof response.objects.object[0].thumbnail === 'undefined') { // this needs to be kept even if workaround goes away
+     $("#recent").append("No thumbnail available");
+  } else if (response.objects.object[0].thumbnail["@mime"] == "image/jpeg") {
       $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
- } else if (response.objects.object[0].thumbnail["@mime"] == "image/jpeg") {
-    $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
- } else if (typeof response.objects.object[0].thumbnail === 'undefined') { // this needs to be kept even if workaround goes away
-   $("#recent").append("No thumbnail available");
-   }
+console.log(response.objects.object[0].thumbnail["@url"]);
+ }
 
 } //end displayThumbnail
 
