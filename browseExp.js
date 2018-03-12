@@ -67,35 +67,23 @@ var akURL="" //clear out past instances in memory
   akURL="https://catalog.archives.gov/api/v1/?"; // Base url for API
   akURL=akURL+"rows=10&"; //Set rows to 10
 
-if (searchType == "new"){
-  offset=0;
-  //pull records mentioning the Alaska Digitization Project as an "alternate control number"
-  akURL=akURL + "description.fileUnit.variantControlNumberArray.variantControlNumber=\"Alaska%20Digitization%20Project\""
+if (searchType == "newItems") {
 
-  //limit records to items with descriptions
-  akURL=akURL + "&resultTypes=fileUnit";
+  //Limit to items and file units that mention Alaska and have digital objects
+  akURL = akURL + "q=alaska&resultTypes=item,fileUnit&exists=objects"
 
-  //Sort items by when parent record created
-  akURL=akURL + "&sort=description.recordHistory.created.dateTime desc";
-
-  //Save pageURL if needed for paging forward
-  pageURL=akURL;
-
-  console.log(searchType, " ", akURL);
-} else if (searchType == "newItems") {
-
-  //3-1-2018 effort at new items url
-  akURL = akURL + "q=alaska&resultTypes=item,fileUnit&exists=objects&sort=description.recordHistory.changed.modification.dateTime%20desc"
+  //Sort by date record modified
+  akURL = akURL + "&sort=description.recordHistory.changed.modification.dateTime%20desc"
 
   //Save pageURL if needed for paging forward
   pageURL=akURL;
 
   //3-7-2018 Testing single record. Comment out when not in use
  //akURL="https://catalog.archives.gov/api/v1/?naIds=";
- akURL="https://catalog.archives.gov/api/v1/?naIds=24731415";
-
+ //akURL="https://catalog.archives.gov/api/v1/?naIds=24731415";
 
   console.log(searchType, " ", akURL);
+
 //else if below retrieves federally run school newspapers
 } else if (searchType == "schNews"){
  offset=0;
@@ -104,8 +92,7 @@ if (searchType == "new"){
   $("#recent").append("<p>Please be patient as it may take up to 90 seconds for records to appear. This is a known issue and being worked on.</p>")
 
 
-
-  //pull records mentioning the Alaska Digitization Project as an "alternate control number"
+//pull records mentioning the Alaska Digitization Project as an "alternate control number"
   akURL=akURL + "description.fileUnit.variantControlNumberArray.variantControlNumber=\"Alaska%20Digitization%20Project\""
 
  //pull records of parent title series 'newspapers'
@@ -114,7 +101,7 @@ if (searchType == "new"){
   //limit records to items with descriptions
   akURL=akURL + "&resultTypes=fileUnit";
 
-  //Sort items by when parent record created
+  //Sort items by title
   akURL=akURL + "&sort=description.title asc";
 
   //Save pageURL if needed for paging forward
@@ -134,13 +121,34 @@ $("#recent").append("<p>Please be patient as it may take up to 90 seconds for re
   //limit records to items with descriptions
   akURL=akURL + "&resultTypes=fileUnit";
 
-  //Sort items by when parent record created
+  //Sort items by title
   akURL=akURL + "&sort=description.title asc";
 
   //Save pageURL if needed for paging forward
   pageURL=akURL;
 
   console.log(searchType, " ", akURL);
+} else if (searchType == "villageCensusRolls"){
+offset=0;
+//Intro text
+//$("#intro").append("<p>Scope and Content of parent series: This series consists of photographs taken between 1972 and 1976 documenting national parks in Alaska. Subjects include flora, fauna, facilities, rivers, mountains, other natural features, towns and villages, and activities of park personnel and visitors.</p>");
+//$("#intro").append("<p style=\"border-bottom-style: solid\">Items should be in order by place name.</p> <p></p>")
+$("#recent").append("<p>Please be patient as it may take up to 90 seconds for records to appear. This is a known issue and being worked on.</p>")
+
+//pull records of parent title series 'Village Census Rolls"
+ akURL=akURL + "description.fileUnit.parentSeries.title=village%20census%20rolls";
+
+  //limit records to items with descriptions
+  akURL=akURL + "&resultTypes=fileUnit";
+
+  //Sort items by title
+  akURL=akURL + "&sort=description.title asc";
+
+  //Save pageURL if needed for paging forward
+  pageURL=akURL;
+
+  console.log(searchType, " ", akURL);
+
 } else if (searchType == "taskForcePhotos"){
 offset=0;
 //Intro text
@@ -154,7 +162,7 @@ $("#recent").append("<p>Please be patient as it may take up to 90 seconds for re
   //limit records to items with descriptions
   akURL=akURL + "&resultTypes=fileUnit";
 
-  //Sort items by when parent record created
+  //Sort items by title
   akURL=akURL + "&sort=description.title asc";
 
   //Save pageURL if needed for paging forward
@@ -344,8 +352,8 @@ console.log("https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" +
       $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
 console.log(response.objects.object[0].thumbnail["@url"]);
  }
-
 } //end displayThumbnail
+
 
 //Leaving unimplemented for now, may be enough to have thumbnail and record.
 function printObjLoc(response) {
