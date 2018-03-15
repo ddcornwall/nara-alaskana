@@ -1,78 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en-us">
+
   <head>
     <title>National Archives Alaskana Explorer</title>
-    <meta charset="utf-8">
 
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="author" content="Daniel Cornwall">
+    <meta name="description" content="Explore Alaskana in the National Archives.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--Load bootstrap css, needed for grid layout and responsive text and images-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    <!-- US Web Design Sytem -->
+    <link rel="stylesheet" href="uswds-1.6.0/css/uswds.min.css">
     <!--Local css file-->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!-- Local JavaScript-->
-    <script src="search.js"></script>
-
-    <meta name="author" content="Daniel Cornwall">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 
 
-  <body>
-    <!-- Begin Navbar-->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            Menu
-          </button>
-          <a class="navbar-brand" href="https://ddcornwall.github.io/portfolio/">Daniel Cornwall</a>
-        </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="browse.html">Browse</a></li>
-          <li><a href="about.html">About this project</a></li>
-          <li><a href="https://librarianfromalaska.wordpress.com/bug-reports/">Contact / Report a Bug</a></li>
-          <li><a href="https://github.com/ddcornwall/nara-alaskana">Github Repo</a></li>
-          <li><a href="https://librarianfromalaska.wordpress.com/">Daniel's Blog</a></li>
-         </ul>
+<body class="usa-layout-docs">
+  <!-- Skip Navigation -->
+  <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+  
+  <div class="usa-navbar">
+    <div class="usa-logo" id="extended-logo">
+      <em class="usa-logo-text">
+        <a href="/"
+          title="Home"
+          aria-label="Home">
+          Alaskana Explorer
+        </a>
+      </em>
+    </div>
+    <button class="usa-menu-btn">Menu</button>
+  </div>
 
+  <nav role="navigation" class="usa-nav">
+    <div class="usa-nav-inner">
+      <button class="usa-nav-close">
+        <img src="uswds-1.6.0/img/close.svg" alt="close">
+      </button>
+      
+      <div class="usa-nav-secondary">
+
+        <ul class="usa-unstyled-list usa-nav-secondary-links">
+          <li>
+            <a href="/">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="browse.html">
+              Browse
+            </a>
+          </li>
+          <li>
+            <a href="about.html">
+              About
+            </a>
+          </li>
+        </ul>
       </div>
-      </div>
-    </nav>
+    </div>
+  </nav>
 
-    <!--End Navigation Bar-->
-<section id="Main">
-<div class="container-fluid">
-    <h1>National Archives (NARA) Alaskana Explorer 1.0</h1>
+  <main id="main-content">
 
-<p>This page provides a keyword search to the US National Archives Catalog records mentioning Alaska and linking to digital objects. It then displays ten records.
+    <section class="usa-section usa-section-dark">
 
-  <form id="form-container" class="form-container">
-        <label for="keywords">Enter keywords: </label><input type="text" id="keywords" value="">
+      <h1>National Archives (NARA) Alaskana Explorer 1.0</h1>
+
+      <p>This page provides a keyword search to the US National Archives Catalog records mentioning Alaska and linking to digital objects. It then displays ten records.
+
+      <form id="form-container">
+        <label for="keywords">Enter keywords</label>
+        <input type="text" id="keywords" />
         <button id="submit-btn">Submit</button>
-  </form>
-<p>Please be patient as it may take up to 90 seconds for records to appear. This is a <a href="https://github.com/ddcornwall/nara-alaskana/blob/master/knownIssues">known issue</a> and being worked on.
-</p>
+      </form>
 
-<p style="border-bottom-style: solid"></p>
+      <p>Please be patient as it may take up to 90 seconds for records to appear. This is a <a href="https://github.com/ddcornwall/nara-alaskana/blob/master/knownIssues">known issue</a> and being worked on.</p>
 
+    </section>
 
-<!--Load most recent items with select metadata -->
-<div id="recent"></div>
+    <!--Load most recent items with select metadata -->
+    <div id="recent"></div>
 
-<p>This is a personal project of Daniel Cornwall, a librarian/coder living in Alaska. He can be <a href="https://librarianfromalaska.wordpress.com/about/" target="_blank">contacted through his blog's about page</a></p>.
+</main>
 
-</div> <!--End fluid container-->
-</section>
+<footer class="usa-footer usa-footer-medium" role="contentinfo">
+
+  <p>This is a personal project of <a href="https://librarianfromalaska.wordpress.com/about/" target="_blank">Daniel Cornwall</a>, a librarian/coder living in Alaska.</p>
+
+  <div class="usa-grid usa-footer-return-to-top">
+    <a href="#">Return to top</a>
+  </div>
+
+  <div class="usa-footer-primary-section">
+      <div class="usa-grid">
+        <nav class="usa-footer-nav">
+            <ul class="usa-unstyled-list">
+              <li class="usa-footer-primary-link">
+                <a href="https://librarianfromalaska.wordpress.com/bug-reports/">
+                  Report a bug
+                </a>
+              </li>
+              <li class="usa-footer-primary-link">
+                <a href="https://github.com/ddcornwall/nara-alaskana">
+                  View on Github
+                </a>
+              </li>
+              <li class="usa-footer-primary-link">
+                <a href="https://librarianfromalaska.wordpress.com/">
+                  Daniel's Blog
+                </a>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </div>
+</footer>
+<!-- US Web Design Standards -->
+<script src="uswds-1.6.0/js/uswds.min.js"></script>
+<!-- Local JavaScript-->
+<script src="js/search.js"></script>
 </body>
 </html>
