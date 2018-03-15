@@ -334,24 +334,45 @@ function displayThumbnail(response) {
   var recType = ShowRecType(response);
 
    $("#recent").append("</br>");
+/* new code, not fully working yet
+   if (typeof response.objects === 'undefined' || recType === 'itemAv' ) {
+       console.log("Line 342 - response.objects undefined or recType is itemAV");
+       $("#recent").append("No thumbnail available");
+   } else if (typeof response.objects.object.length === 'undefined') {
+      console.log("Line 345 - response.objects.object.length undefined");
+      $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object.thumbnail["@url"] + "\">");
+   } else {
+         console.log("Line 348 - last else");
+     $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
+}
+*/
+
+
   //March 2018 - trimming paths and prepends are part of a NARA provided workaround while they reorganize files.
   if (typeof response.objects === 'undefined' || recType === 'itemAv' ) {
+      console.log("Line 338 - response.objects undefined or recType is itemAV");
       $("#recent").append("No thumbnail available");
   } else if (typeof response.objects.object.length === 'undefined') {
+     console.log("Line 341 - response.objects.object.length undefined");
      filePath=response.objects.object.file["@path"].slice(4);
      $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object.thumbnail["@path"] + "\">");
   } else if (response.objects.object[0].file["@mime"] == "image/jpeg") {
+        console.log("Line 345 - file of first object is jpeg");
         filePath=response.objects.object[0].file["@path"].slice(4);
       $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object[0].thumbnail["@path"] + "\">");
 console.log("https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object[0].thumbnail["@path"])
   } else if (response.objects.object[0].file["@mime"] == "image/pdf") {
+    console.log("Line 350 - file of first object is pdf");
         $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
   } else if (typeof response.objects.object[0].thumbnail === 'undefined') { // this needs to be kept even if workaround goes away
+  console.log("Line 353 - digital object has no thumbnail - i.e. csv etc");
      $("#recent").append("No thumbnail available");
+  //I'm not sure why I put next line in here.
   } else if (response.objects.object[0].thumbnail["@mime"] == "image/jpeg") {
+  console.log("Line 356 - thumbnail itself is jpeg");
       $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
 console.log(response.objects.object[0].thumbnail["@url"]);
- }
+} 
 } //end displayThumbnail
 
 
