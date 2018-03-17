@@ -3,7 +3,7 @@
 <html lang="en-us">
 
   <head>
-    <title>National Archives Alaskana Explorer</title>
+    <title>Alaskana Explorer</title>
 
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -22,68 +22,83 @@
 </head>
 
 
-<body class="usa-layout-docs">
+<body class="usa-banner">
   <!-- Skip Navigation -->
   <a class="usa-skipnav" href="#main-content">Skip to main content</a>
   
-  <div class="usa-navbar">
-    <div class="usa-logo" id="extended-logo">
-      <em class="usa-logo-text">
-        <a href="/"
-          title="Home"
-          aria-label="Home">
-          Alaskana Explorer
-        </a>
-      </em>
+  <header class="usa-header usa-header-extended" role="banner">
+    <div class="usa-navbar">
+      <div class="usa-logo" id="extended-logo">
+        <em class="usa-logo-text">
+          <a href="/"
+            title="Home"
+            aria-label="Home">
+            Alaskana Explorer
+          </a>
+        </em>
+      </div>
+      <button class="usa-menu-btn">Menu</button>
     </div>
-    <button class="usa-menu-btn">Menu</button>
-  </div>
 
-  <nav role="navigation" class="usa-nav">
-    <div class="usa-nav-inner">
-      <button class="usa-nav-close">
-        <img src="uswds-1.6.0/img/close.svg" alt="close">
-      </button>
-      
-      <div class="usa-nav-secondary">
+    <nav role="navigation" class="usa-nav">
+      <div class="usa-nav-inner">
+        <button class="usa-nav-close">
+          <img src="uswds-1.6.0/img/close.svg" alt="close">
+        </button>
 
-        <ul class="usa-unstyled-list usa-nav-secondary-links">
+        <ul class="usa-nav-primary">
           <li>
-            <a href="/">
-              Home
-            </a>
+            <a class="usa-nav-link" href="/"><span>Home</span></a>
           </li>
           <li>
-            <a href="browse.html">
-              Browse
-            </a>
+            <a class="usa-nav-link" href="browse.html"><span>Browse</span></a>
           </li>
           <li>
-            <a href="about.html">
-              About
-            </a>
+            <a class="usa-nav-link" href="about.html"><span>About</span></a>
           </li>
         </ul>
+        
+        <div class="usa-nav-secondary">
+
+          <ul class="usa-unstyled-list usa-nav-secondary-links">
+            <li>
+              <a href="https://github.com/ddcornwall/nara-alaskana">
+                View on Github
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/ddcornwall/nara-alaskana/issues">
+                Report a bug
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
   <main id="main-content">
 
     <section class="usa-section usa-section-dark">
+      <div class="usa-grid">
 
-      <h1>National Archives (NARA) Alaskana Explorer 1.0</h1>
+        <h1>NARA Alaskana Explorer 1.0</h1>
 
-      <p>This page provides a keyword search to the US National Archives Catalog records mentioning Alaska and linking to digital objects. It then displays ten records.
+        <p>Search the US National Archives for Alaska-related records and objects.</p>
 
-      <form id="form-container">
-        <label for="keywords">Enter keywords</label>
-        <input type="text" id="keywords" />
-        <button id="submit-btn">Submit</button>
-      </form>
+        <form id="form-container" class="usa-search js-search-form" role="search">
+          <div role="search">
+            <label for="keywords" class="usa-sr-only">Search keywords</label>
+            <input type="search" id="keywords" />
+            <button id="submit-btn" type="submit">
+              <img src="uswds-1.6.0/img/search.svg" alt="Search"> 
+              <span class="usa-sr-only">Search<</span></button>
+          </div>
+        </form>
 
-      <p>Please be patient as it may take up to 90 seconds for records to appear. This is a <a href="https://github.com/ddcornwall/nara-alaskana/blob/master/knownIssues">known issue</a> and being worked on.</p>
+        <p>Please note: It may take up to 90 seconds for records to appear. This is a <a href="https://github.com/ddcornwall/nara-alaskana/issues">known issue</a>.</p>
 
+      </div>
     </section>
 
     <!--Load most recent items with select metadata -->
@@ -92,8 +107,6 @@
 </main>
 
 <footer class="usa-footer usa-footer-medium" role="contentinfo">
-
-  <p>This is a personal project of <a href="https://librarianfromalaska.wordpress.com/about/" target="_blank">Daniel Cornwall</a>, a librarian/coder living in Alaska.</p>
 
   <div class="usa-grid usa-footer-return-to-top">
     <a href="#">Return to top</a>
@@ -104,18 +117,8 @@
         <nav class="usa-footer-nav">
             <ul class="usa-unstyled-list">
               <li class="usa-footer-primary-link">
-                <a href="https://librarianfromalaska.wordpress.com/bug-reports/">
-                  Report a bug
-                </a>
-              </li>
-              <li class="usa-footer-primary-link">
-                <a href="https://github.com/ddcornwall/nara-alaskana">
-                  View on Github
-                </a>
-              </li>
-              <li class="usa-footer-primary-link">
-                <a href="https://librarianfromalaska.wordpress.com/">
-                  Daniel's Blog
+                <a href="contributors.html">
+                  Learn about our Contributors
                 </a>
               </li>
             </ul>
