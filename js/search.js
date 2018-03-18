@@ -97,7 +97,7 @@ function displayResults(results) {
     printRecLoc(response.opaResponse.results.result[i]);
     printCataloged(response.opaResponse.results.result[i]);
     printNaID(response.opaResponse.results.result[i]);
-   $("#recent").append("<p style=\"border-bottom-style: solid\"></p>" );
+   $("#recent").append("<hr>" );
 
   } // end display loop
   clearTimeout(naraRequestTimeout);
