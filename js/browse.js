@@ -340,7 +340,7 @@ function displayThumbnail(response) {
        $("#recent").append("No thumbnail available");
    } else if (typeof response.objects.object.length === 'undefined') {
       console.log("Line 345 - response.objects.object.length undefined");
-      var filePath = response.objects.object[0].file["@path"]
+      var filePath = response.objects.object.file["@path"]
       console.log("filePath:" + filePath);
       if (filePath.startsWith("/lz")) {
         filePath=response.objects.object.file["@path"].slice(4);
