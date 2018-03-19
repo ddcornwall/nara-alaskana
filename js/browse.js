@@ -334,20 +334,34 @@ function displayThumbnail(response) {
   var recType = ShowRecType(response);
 
    $("#recent").append("</br>");
-/* new code, not fully working yet
+// new code, not fully working yet
    if (typeof response.objects === 'undefined' || recType === 'itemAv' ) {
        console.log("Line 342 - response.objects undefined or recType is itemAV");
        $("#recent").append("No thumbnail available");
    } else if (typeof response.objects.object.length === 'undefined') {
       console.log("Line 345 - response.objects.object.length undefined");
+      var filePath = response.objects.object[0].file["@path"]
+      console.log("filePath:" + filePath);
+      if (filePath.startsWith("/lz")) {
+        filePath=response.objects.object.file["@path"].slice(4);
+      $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object.thumbnail["@path"] + "\">");
+    } else {
       $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object.thumbnail["@url"] + "\">");
+  }
    } else {
-         console.log("Line 348 - last else");
+         console.log("Line 348 - multiple objects");
+     var filePath = response.objects.object[0].file["@path"]
+     console.log("filePath:" + filePath);
+     if (filePath.startsWith("/lz")) {
+       filePath=response.objects.object[0].file["@path"].slice(4);
+     $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object[0].thumbnail["@path"] + "\">");
+   } else {
      $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
+ }
 }
-*/
 
 
+/*
   //March 2018 - trimming paths and prepends are part of a NARA provided workaround while they reorganize files.
   if (typeof response.objects === 'undefined' || recType === 'itemAv' ) {
       console.log("Line 338 - response.objects undefined or recType is itemAV");
@@ -372,7 +386,8 @@ console.log("https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" +
   console.log("Line 356 - thumbnail itself is jpeg");
       $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
 console.log(response.objects.object[0].thumbnail["@url"]);
-} 
+}
+*/
 } //end displayThumbnail
 
 
