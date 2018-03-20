@@ -63,7 +63,6 @@ return akURL;
 } //end function build search
 
 //begin function displayResults
-//begin function displayResults
 function displayResults(results) {
 
   //Clears any previous search results unless paging results
