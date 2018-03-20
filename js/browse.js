@@ -80,6 +80,7 @@ if (searchType == "newItems") {
 
   //3-7-2018 Testing single record. Comment out when not in use
  //akURL="https://catalog.archives.gov/api/v1/?naIds=";
+ //akURL = "https://catalog.archives.gov/api/v1/?naIds=75809390";
  //akURL="https://catalog.archives.gov/api/v1/?naIds=24731415";
 
   console.log(searchType, " ", akURL);
@@ -339,7 +340,7 @@ function displayThumbnail(response) {
        console.log("Line 342 - response.objects undefined or recType is itemAV");
        $("#recent").append("No thumbnail available");
    } else if (typeof response.objects.object.length === 'undefined') {
-      console.log("Line 345 - response.objects.object.length undefined");
+      console.log("Line 341 - response.objects.object.length undefined");
       var filePath = response.objects.object.file["@path"]
       console.log("filePath:" + filePath);
       if (filePath.startsWith("/lz")) {
@@ -347,9 +348,11 @@ function displayThumbnail(response) {
       $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object.thumbnail["@path"] + "\">");
     } else {
       $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object.thumbnail["@url"] + "\">");
-  }
-   } else {
-         console.log("Line 348 - multiple objects");
+    }
+   } else if (typeof response.objects.object[0].thumbnail === 'undefined') {
+       $("#recent").append("No thumbnail available");
+   }  else {
+         console.log("Line 351 - multiple objects");
      var filePath = response.objects.object[0].file["@path"]
      console.log("filePath:" + filePath);
      if (filePath.startsWith("/lz")) {
