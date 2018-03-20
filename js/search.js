@@ -214,29 +214,37 @@ $("#recent").append("</br> There are " + response.objects.object.length + " digi
 }
 } // End printNumObj
 
-//3-8-2018 still in progress
 function displayThumbnail(response) {
   var recType = ShowRecType(response);
 
    $("#recent").append("</br>");
-  //March 2018 - trimming paths and prepends are part of a NARA provided workaround while they reorganize files.
-  if (typeof response.objects === 'undefined' || recType === 'itemAv' ) {
-      $("#recent").append("No thumbnail available");
-  } else if (typeof response.objects.object.length === 'undefined') {
-     filePath=response.objects.object.file["@path"].slice(4);
-     $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object.thumbnail["@path"] + "\">");
-  } else if (response.objects.object[0].file["@mime"] == "image/jpeg") {
-        filePath=response.objects.object[0].file["@path"].slice(4);
-      $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object[0].thumbnail["@path"] + "\">");
-console.log("https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object[0].thumbnail["@path"])
-  } else if (response.objects.object[0].file["@mime"] == "image/pdf") {
-        $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
-  } else if (typeof response.objects.object[0].thumbnail === 'undefined') { // this needs to be kept even if workaround goes away
-     $("#recent").append("No thumbnail available");
-  } else if (response.objects.object[0].thumbnail["@mime"] == "image/jpeg") {
-      $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
-console.log(response.objects.object[0].thumbnail["@url"]);
+// new code, not fully working yet
+   if (typeof response.objects === 'undefined' || recType === 'itemAv' ) {
+       console.log("Line 342 - response.objects undefined or recType is itemAV");
+       $("#recent").append("No thumbnail available");
+   } else if (typeof response.objects.object.length === 'undefined') {
+      console.log("Line 341 - response.objects.object.length undefined");
+      var filePath = response.objects.object.file["@path"]
+      console.log("filePath:" + filePath);
+      if (filePath.startsWith("/lz")) {
+        filePath=response.objects.object.file["@path"].slice(4);
+      $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object.thumbnail["@path"] + "\">");
+    } else {
+      $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object.thumbnail["@url"] + "\">");
+    }
+   } else if (typeof response.objects.object[0].thumbnail === 'undefined') {
+       $("#recent").append("No thumbnail available");
+   }  else {
+         console.log("Line 351 - multiple objects");
+     var filePath = response.objects.object[0].file["@path"]
+     console.log("filePath:" + filePath);
+     if (filePath.startsWith("/lz")) {
+       filePath=response.objects.object[0].file["@path"].slice(4);
+     $("#recent").append("<img class=\"img-thumbnail\" src = \"https://catalog.archives.gov/catalogmedia/live/" + filePath + "/" + response.objects.object[0].thumbnail["@path"] + "\">");
+   } else {
+     $("#recent").append("<img class=\"img-thumbnail\" src = \"" + response.objects.object[0].thumbnail["@url"] + "\">");
  }
+}
 } //end displayThumbnail
 
 
