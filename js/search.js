@@ -62,6 +62,7 @@ return akURL;
 // end else
 } //end function build search
 
+
 //begin function displayResults
 function displayResults(results) {
 
