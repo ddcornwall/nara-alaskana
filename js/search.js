@@ -10,6 +10,9 @@ var offset=0;
 searchType="search";
 pageURL="";
 
+//need global variable catalogURL to provide browsing workaround
+var catalogKeywords="";
+
 //main program
 $.getJSON( buildSearch(), function( data ) {
   response=data;
@@ -43,6 +46,9 @@ if (searchType == "search"){
   //Set keywords from form in index.html, restricted to online records mentioning Alaska
  var keywords = $("#keywords").val();
  akURL=akURL + "q=" + keywords + " and alaska &exists=objects";
+
+ //Create a workaround catalog URL to browse next set of records in full NARA catalog
+ catalogKeywords = keywords;
 
 //Set keywords from form in index.html, restricted to records mentioning Alaska Digitization Project
 //  akURL=akURL + "q=" + keywords + " and \"Alaska%20Digitization%20Project\"";
@@ -101,6 +107,11 @@ function displayResults(results) {
    $("#recent").append("<p style=\"border-bottom-style: solid\"></p>" );
 
   } // end display loop
+
+//Temporary paging workaround
+ $("#recent").append("</br><a href=\"https://catalog.archives.gov/search?q=" + catalogKeywords + "%20and%20alaska%20&resultTypes=item,fileUnit&tabType=online&offset=10\" target=\"_blank\">See next 10 records</a> in full National Archives Catalog.");
+ $("#recent").append("</br>This browse into the full catalog is offered because we cannot current page through results here. Link opens into the official National Catalog in a new tab.")
+
   clearTimeout(naraRequestTimeout);
 
 //Functions local to DisplayResults
