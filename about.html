@@ -23,7 +23,7 @@
 <body class="usa-banner">
   <!-- Skip Navigation -->
   <a class="usa-skipnav" href="#main-content">Skip to main content</a>
-  
+
   <header class="usa-header usa-header-extended" role="banner">
     <div class="usa-navbar">
       <div class="usa-logo" id="extended-logo">
@@ -55,7 +55,7 @@
             <a class="usa-nav-link" href="about.html"><span>About</span></a>
           </li>
         </ul>
-        
+
         <div class="usa-nav-secondary">
 
           <ul class="usa-unstyled-list usa-nav-secondary-links">
@@ -83,25 +83,21 @@
         <h1>About Alaskana Explorer</h1>
 
         <h2>TL:DR version</h2>
-        <p>This project uses the US National Archive Catalog Search API to pull records associated with the Alaska Digitization Project. It provides a simplified view of fields and provides links to additional material available in the full National Archives catalog at <a href="https://catalog.archives.gov/">https://catalog.archives.gov/</a>.</p>
+        <p>This project uses the <a href="https://github.com/usnationalarchives/Catalog-API">US National Archive Catalog Search API</a> to pull records mentioning Alaska that also have digital objects. It provides a simplified view of fields and provides links to additional material available in the  <a href="https://catalog.archives.gov/">https://catalog.archives.gov/">full National Archives catalog</a>.</p>
 
-        <p>This project is not affialiated with the US National Archives. As of February 2018 it was not affilated with any other institution. It started as a personal project of <a href="https://www.linkedin.com/in/danielcornwall/">Daniel Cornwall</a>, a librarian, coder and lifelong learner living in Juneau, Alaska.
+        <p>This project is not affialiated with the US National Archives. As of March 2018 it was not affilated with any other institution. It started as a personal project of <a href="https://librarianfromalaska.wordpress.com/">Daniel Cornwall</a>, a librarian, coder and lifelong learner living in Juneau, Alaska. In March 2018, Amy Carney joined the project to work with the user interface, site look and feel and offer suggestions on refactoring the search code.
 
         <h2>Motivation for Project</h2>
 
-        <p>My motivation for this project was to share the rich digitized treasures that the National Archives has on file for Alaska as a result of Alaska's long history as a US territory. While this can be accessed through the National Archives main catalog, I had the impression that the full catalog and the lengthy metadata listed in full catalog could be intimidating for some Alaskan users. So I had the idea to provide a search to a subset of records which I hoped would include only digitized items mentioning Alaska. Eventually, I want to provide some canned searches to key events and topics in Alaska's history.</p>
+        <p>Daniel's motivation for this project was to share the rich digitized treasures that the National Archives has on file for Alaska as a result of Alaska's long history as a US territory. While this can be accessed through the National Archives main catalog, he had the impression that the full catalog and the lengthy metadata listed in full catalog could be intimidating for some users. So Daniel had the idea to provide a search to a subset of records which he hoped would include only digitized items mentioning Alaska. Daniel also wanted to provide some canned searches to key events and topics in Alaska's history.</p>
 
         <h2>Implementation</h2>
 
-        <p>My original idea to create a subset of records to search from was to use "Alaska" as a keyword and limit the results to descriptions with online records, then let people do searches within that set. In the main National Archives catalog, you can do this by searching for Alaska and then clicking on the "<a href="https://catalog.archives.gov/search?q=alaska&tabType=online">available online tab.</a>" However, I could not find a way to truly replicate this search using the <a href="https://github.com/usnationalarchives/Catalog-API/blob/master/search_and_export.md">National Archives Catalog Search API</a>. So I tried several approaches.</p>
+        <p>The idea was to create a subset of records for the user to search from that used "Alaska" as a keyword and limited the results to descriptions with online records. The user would then do keyword searches within that subset. In the main National Archives catalog, you can do this by searching for Alaska and then clicking on the "<a href="https://catalog.archives.gov/search?q=alaska&tabType=online">available online</a> tab." It took several approaches and several exchanges with staff at the National Archives to figure out how to do this.
 
-        <p>I finally settled on something not applicable to other states. I limited to retrievals to items listed as belonging to the "Alaska Digitization Project" as listed in a description's "description.fileUnit.variantControlNumberArray.variantControlNumber" field. The "Alaska Digitization Project" is the result of the closure of the National Archives Anchorage Alaska field office. When the office was closed, nearly all the records were transferred to the Seattle field office. As a measure to soften the blow of moving Alaska related records somewhere inaccessible to many Alaskans, the National Archives agreed to digitize the Alaska related records they transferred. As far as I know, this is an ongoing project and it is uncertain when all the records will be digitized.</p>
+        <p>We want to keep the Alaskana Explorer focused on digitized records because we hope it will be a resource for students and other people who prioritize immediate access to objects who will in turn share their finds with others.</p>
 
-        <p>I want to keep the Alaskana Explorer focused on digitized records because I hope it will be a resource for students and other people who prioritize immediate access and who will in turn share their finds with others.</p>
-
-        <p>But I pay a price for limiting retrievals to items in the Alaska Digitization Project. I'm missing out on other digitized Alaskana that was created outside of the project. Eventually I'd like to figure that out.</p>
-
-        <p>This application has several <a href="https://github.com/ddcornwall/nara-alaskana/issues">known issues</a>. Please look them over before sending me a bug report.</p>
+        <p>This application has several <a href="https://github.com/ddcornwall/nara-alaskana/issues">known issues</a>. Please look them over before sending us a bug report.</p>
 
         <h2>GitHub Links</h2>
         <p>This project has a GitHub Repo. Aside from the code for these pages and search scripts, you might be interested in:</p>
@@ -125,7 +121,7 @@
     <div class="usa-grid usa-footer-return-to-top">
       <a href="#">Return to top</a>
     </div>
-  
+
     <div class="usa-footer-primary-section">
         <div class="usa-grid">
           <nav class="usa-footer-nav">
