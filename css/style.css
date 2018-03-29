@@ -1,2 +1,6 @@
 /*Colors chosen from https://standards.usa.gov/components/colors/ */
 /* background gray-warm-light, text color federal base black */
+#intro,
+#recent {
+  margin: .8em;
+}
