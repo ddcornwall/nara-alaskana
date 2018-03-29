@@ -41,7 +41,7 @@ function checkResultBtn() {
   //disable paging if offset is more than search resultFields
   if ((offset+10) >= response.opaResponse.results.total) {
   document.getElementById("fwd").disabled = true;
-  $("#endList").append("</br>End of results list.");
+  $("#endList").append("<br>End of results list.");
 } else {document.getElementById("fwd").disabled = false;}
 }
 
@@ -89,7 +89,7 @@ if (searchType == "newItems") {
 } else if (searchType == "schNews"){
  offset=0;
   //Intro text
-  $("#intro").append("<p>Scope and Content of parent series: This series consists of school newspapers from Bureau of Indian Affairs schools throughout Alaska. </p> The newspapers include news about school activities such as sports; dances; special projects by different classes; and programs including plays, 4-H club events, and student council affairs. There are usually articles about events in the town or village including hunting; fishing; arrival of the supply ship, North Star, and other visitors; the arrival of the mail plane; births, deaths, and marriages; and weather conditions. Many of the newspapers include articles written by the children about their accomplishments or interests.</p><p style=\"border-bottom-style: solid\">There are also several newspapers concerning events in the Adult Education program.</p><p></p>");
+  $("#intro").append("<p>Scope and Content of parent series: This series consists of school newspapers from Bureau of Indian Affairs schools throughout Alaska. </p> The newspapers include news about school activities such as sports; dances; special projects by different classes; and programs including plays, 4-H club events, and student council affairs. There are usually articles about events in the town or village including hunting; fishing; arrival of the supply ship, North Star, and other visitors; the arrival of the mail plane; births, deaths, and marriages; and weather conditions. Many of the newspapers include articles written by the children about their accomplishments or interests.</p><p>There are also several newspapers concerning events in the Adult Education program.</p><hr>");
   $("#recent").append("<p>Please be patient as it may take up to 90 seconds for records to appear. This is a known issue and being worked on.</p>")
 
 
@@ -113,7 +113,7 @@ if (searchType == "newItems") {
 offset=0;
 //Intro text
 $("#intro").append("<p>Scope and Content of parent series: This series consists of black and white photographs taken by the Alaska District of the U.S. Army Corps of Engineers of the damage done by the 1964 Good Friday Alaska earthquake and the subsequent recovery efforts. The areas represented are Anchorage, the Turnagain Arm residential area, Denali Elementary School, Cordova, Elmendorf Air Force Base, Fort Richardson, Girdwood, Homer, Kodiak, Moose Pass, Nikolski, Seldovia, Seward, Tatitlek, Valdez, and Whittier.</p>");
-$("#intro").append("<p style=\"border-bottom-style: solid\">Items should be in order by community.</p> <p></p>")
+$("#intro").append("<p>Items should be in order by community.</p><hr>")
 $("#recent").append("<p>Please be patient as it may take up to 90 seconds for records to appear. This is a known issue and being worked on.</p>")
 
 //pull records of parent title series 'Alaska Earthquake Photographs'
@@ -154,7 +154,7 @@ $("#recent").append("<p>Please be patient as it may take up to 90 seconds for re
 offset=0;
 //Intro text
 $("#intro").append("<p>Scope and Content of parent series: This series consists of photographs taken between 1972 and 1976 documenting national parks in Alaska. Subjects include flora, fauna, facilities, rivers, mountains, other natural features, towns and villages, and activities of park personnel and visitors.</p>");
-$("#intro").append("<p style=\"border-bottom-style: solid\">Items should be in order by place name.</p> <p></p>")
+$("#intro").append("<p>Items should be in order by place name.</p><hr>")
 $("#recent").append("<p>Please be patient as it may take up to 90 seconds for records to appear. This is a known issue and being worked on.</p>")
 
 //pull records of parent title series 'Alaska Task Force Photographs', naId=2252773
@@ -191,12 +191,12 @@ function displayResults(results) {
 
   //Let user know if search fails
   var naraRequestTimeout = setTimeout(function(){
-  $("#recent").append("</br><p>Search or display timed out. I apologize for the inconvenience.</p>");
+  $("#recent").append("<br><p>Search or display timed out. I apologize for the inconvenience.</p>");
   }, 120000);
 
 
   //space between text and results
-  $("#recent").append("</br>" + response.opaResponse.results.total + " results are available.</br>");
+  $("#recent").append("<br>" + response.opaResponse.results.total + " results are available.<br>");
 
   //display results
   for (var i=0; i < response.opaResponse.results.result.length; i++) {
@@ -214,7 +214,7 @@ function displayResults(results) {
     printRecLoc(response.opaResponse.results.result[i]);
     printCataloged(response.opaResponse.results.result[i]);
     printNaID(response.opaResponse.results.result[i]);
-   $("#recent").append("<p style=\"border-bottom-style: solid\"></p>" );
+   $("#recent").append("<hr>" );
 
   } // end display loop
   clearTimeout(naraRequestTimeout);
@@ -234,12 +234,12 @@ return recType;
 } // End ShowRecType
 
 function printRecNum(response) {
-  $("#recent").append("</br>");
+  $("#recent").append("<br>");
   $("#recent").append("Record: " + response.num);
 } // End printRecNum
 
 function printTitle(response) {
-$("#recent").append("</br>");
+$("#recent").append("<br>");
 
 var recType = ShowRecType(response);
 if (recType === "fileUnit") {
@@ -258,13 +258,13 @@ if (recType === "fileUnit") {
 function printScope(response) {
   var recType = ShowRecType(response);
   if (recType === "itemAv") {
-    $("#recent").append("</br>");
+    $("#recent").append("<br>");
     $("#recent").append("Scope and Contents: " + response.description.itemAv.scopeAndContentNote);
   }
 } //End print scope
 
 function printParentTitle(response) {
-  $("#recent").append("</br>");
+  $("#recent").append("<br>");
   var recType = ShowRecType(response);
     if (recType === "fileUnit") {
        $("#recent").append("Parent Series: " + response.description.fileUnit.parentSeries.title);
@@ -282,20 +282,20 @@ function printParentTitle(response) {
 
 //This needs an array test
 function printCreator(response) {
-  $("#recent").append("</br>");
+  $("#recent").append("<br>");
     $("#recent").append("Creating Agency: Not implemented");
 }
 
 function printRecStart(response) {
   var recType = ShowRecType(response);
   if (recType === "fileUnit") {
-     $("#recent").append("</br> Year Records Start: " + response.description.fileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year);
+     $("#recent").append("<br> Year Records Start: " + response.description.fileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year);
   } else if (recType === "item"  && typeof response.description.item.parentFileUnit != "undefined") {
-    $("#recent").append("</br> Year Records Start: " + response.description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year);
+    $("#recent").append("<br> Year Records Start: " + response.description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveStartDate.year);
   } else if (recType === "item"  && typeof response.description.item.parentSeries != "undefined") {
-    $("#recent").append("</br> Year Records Start: " + response.description.item.parentSeries.inclusiveDates.inclusiveStartDate.year);
+    $("#recent").append("<br> Year Records Start: " + response.description.item.parentSeries.inclusiveDates.inclusiveStartDate.year);
   } else if (recType === "itemAv") {
-      $("#recent").append("</br> Year Records Start: " + response.description.itemAv.parentSeries.inclusiveDates.inclusiveStartDate.year);
+      $("#recent").append("<br> Year Records Start: " + response.description.itemAv.parentSeries.inclusiveDates.inclusiveStartDate.year);
     } else {
         $("#recent").append("Records Start: Unable to determine. Unknown error.");
         console.log("Records start display error" + response);
@@ -305,13 +305,13 @@ function printRecStart(response) {
 function printRecEnd(response) {
   var recType = ShowRecType(response);
   if (recType === "fileUnit") {
-     $("#recent").append("</br> Year Records End: " + response.description.fileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
+     $("#recent").append("<br> Year Records End: " + response.description.fileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
    } else if (recType === "item"  && typeof response.description.item.parentFileUnit != "undefined") {
-     $("#recent").append("</br> Year Records End: " + response.description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
+     $("#recent").append("<br> Year Records End: " + response.description.item.parentFileUnit.parentSeries.inclusiveDates.inclusiveEndDate.year);
    } else if (recType === "item"  && typeof response.description.item.parentSeries != "undefined") {
-     $("#recent").append("</br> Year Records End: " + response.description.item.parentSeries.inclusiveDates.inclusiveEndDate.year);
+     $("#recent").append("<br> Year Records End: " + response.description.item.parentSeries.inclusiveDates.inclusiveEndDate.year);
   } else if (recType === "itemAv") {
-      $("#recent").append("</br> Year Records End: " + response.description.itemAv.parentSeries.inclusiveDates.inclusiveEndDate.year);
+      $("#recent").append("<br> Year Records End: " + response.description.itemAv.parentSeries.inclusiveDates.inclusiveEndDate.year);
     } else {
         $("#recent").append("Records End: Unable to determine. Unknown error.");
         console.log("Records End display error" + response);
@@ -321,12 +321,12 @@ function printRecEnd(response) {
 function printNumObj(response) {
   var recType = ShowRecType(response);
   if (typeof response.objects === 'undefined' && recType === "fileUnit") {
-    $("#recent").append("</br> There are " + response.description.fileUnit.itemCount + " digital objects associated with this record.");
-    $("#recent").append("</br> <a href=\"https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=" + response.naId + "&sort=naIdSort%20asc" + "\" target=\"_blank\">View digital objects in National Archives Catalog</a>");
+    $("#recent").append("<br> There are " + response.description.fileUnit.itemCount + " digital objects associated with this record.");
+    $("#recent").append("<br> <a href=\"https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=" + response.naId + "&sort=naIdSort%20asc" + "\">View digital objects in National Archives Catalog [external link]</a>");
       } else if (typeof response.objects.object.length === 'undefined') {
-  $("#recent").append("</br> There is one digital object associated with this record.");
+  $("#recent").append("<br> There is one digital object associated with this record.");
   }  else {
-$("#recent").append("</br> There are " + response.objects.object.length + " digital objects associated with this record.");
+$("#recent").append("<br> There are " + response.objects.object.length + " digital objects associated with this record.");
 }
 } // End printNumObj
 
@@ -334,7 +334,7 @@ $("#recent").append("</br> There are " + response.objects.object.length + " digi
 function displayThumbnail(response) {
   var recType = ShowRecType(response);
 
-   $("#recent").append("</br>");
+   $("#recent").append("<br>");
 // new code, not fully working yet
    if (typeof response.objects === 'undefined' || recType === 'itemAv' ) {
        console.log("Line 342 - response.objects undefined or recType is itemAV");
@@ -367,22 +367,22 @@ function displayThumbnail(response) {
 
 //Leaving unimplemented for now, may be enough to have thumbnail and record.
 function printObjLoc(response) {
-  $("#recent").append("</br>");
+  $("#recent").append("<br>");
     $("#recent").append("First/Only object location: Not implemented");
 } //End printObjLoc
 
 function printRecLoc(response) {
-  $("#recent").append("</br><a href=\"https://catalog.archives.gov/id/" + response.naId + "\" target=\"_blank\">View full record in NARA Catalog</a>");
+  $("#recent").append("<br><a href=\"https://catalog.archives.gov/id/" + response.naId + "\">View full record in NARA Catalog [external link]</a>");
 } //End printRecLoc
 
 function printCataloged(response) {
 var recType = ShowRecType(response);
 if (recType === "fileUnit") {
-   $("#recent").append("</br> Record Cataloged: " + response.description.fileUnit.recordHistory.created.dateTime);
+   $("#recent").append("<br> Record Cataloged: " + response.description.fileUnit.recordHistory.created.dateTime);
 } else if (recType === "item") {
-  $("#recent").append("</br> Record Cataloged: " + response.description.item.recordHistory.created.dateTime);
+  $("#recent").append("<br> Record Cataloged: " + response.description.item.recordHistory.created.dateTime);
 } else if (recType === "itemAv") {
-    $("#recent").append("</br> Record Cataloged: " + response.description.itemAv.recordHistory.created.dateTime);
+    $("#recent").append("<br> Record Cataloged: " + response.description.itemAv.recordHistory.created.dateTime);
 } else {
   $("#recent").append("Title: Unable to determine. Unknown");
   console.log("Date Cataloged display error" + response);
@@ -390,7 +390,7 @@ if (recType === "fileUnit") {
 } //End printCataloged
 
 function printNaID(response) {
-  $("#recent").append("</br> NaID = " + response.naId);
+  $("#recent").append("<br> NaID = " + response.naId);
 } //End printNaID
 
 } //end DisplayResults

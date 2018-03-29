@@ -1,89 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
   <head>
-    <title>Subject Browse: National Archives Alaskana Explorer</title>
-    <meta charset="utf-8">
+    <title>Subject Browse | Alaskana Explorer</title>
+    
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="author" content="Daniel Cornwall">
+    <meta name="description" content="Browse Alaskana in the National Archives.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-    <!--Load bootstrap css, needed for grid layout and responsive text and images-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    <!-- US Web Design Sytem -->
+    <link rel="stylesheet" href="uswds-1.6.0/css/uswds.min.css">
     <!--Local css file-->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Local JavaScript-->
     <!--script src="browse.js"></script -->
     <script src="js/browse.js"></script>
 
-    <meta name="author" content="Daniel Cornwall">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 
 
-  <body>
-    <!-- Begin Navbar - saving for now in case we want modified copy
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            Menu
-          </button>
-          <a class="navbar-brand" href="https://ddcornwall.github.io/portfolio/">Daniel Cornwall</a>
-        </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="browse.html">Browse</a></li>
-          <li><a href="about.html">About this project</a></li>
-          <li><a href="https://librarianfromalaska.wordpress.com/bug-reports/">Contact / Report a Bug</a></li>
-          <li><a href="https://github.com/ddcornwall/nara-alaskana">Github Repo</a></li>
-          <li><a href="https://librarianfromalaska.wordpress.com/">Daniel's Blog</a></li>
-         </ul>
-
+<body class="usa-banner">
+  <!-- Skip Navigation -->
+  <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+  
+  <header class="usa-header usa-header-extended" role="banner">
+    <div class="usa-navbar">
+      <div class="usa-logo" id="extended-logo">
+        <em class="usa-logo-text">
+          <a href="/"
+            title="Home"
+            aria-label="Home">
+            Alaskana Explorer
+          </a>
+        </em>
       </div>
+      <button class="usa-menu-btn">Menu</button>
+    </div>
+
+    <nav role="navigation" class="usa-nav">
+      <div class="usa-nav-inner">
+        <button class="usa-nav-close">
+          <img src="uswds-1.6.0/img/close.svg" alt="close">
+        </button>
+
+        <ul class="usa-nav-primary">
+          <li>
+            <a class="usa-nav-link" href="/"><span>Home</span></a>
+          </li>
+          <li>
+            <a class="usa-nav-link" href="browse.html"><span>Browse</span></a>
+          </li>
+          <li>
+            <a class="usa-nav-link" href="about.html"><span>About</span></a>
+          </li>
+        </ul>
+        
+        <div class="usa-nav-secondary">
+
+          <ul class="usa-unstyled-list usa-nav-secondary-links">
+            <li>
+              <a href="https://github.com/ddcornwall/nara-alaskana">
+                View on Github
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/ddcornwall/nara-alaskana/issues">
+                Report a bug
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
+  </header>
 
-    End Navigation Bar-->
-<section id="Main">
+  <main id="main-content">
 
-<div class="container-fluid">
-    <h1>Subject Browse: National Archives (NARA) Alaskana Explorer 1.0</h1>
+    <section class="usa-section">
+      <div class="usa-grid">
+    
+        <h1>Subject Browse</h1>
 
-<p>This page provides browse searches to records with digital objects within the US National Archives catalog that mention Alaska.
+        <p>Browse records in the US National Archives by an Alaska topic.</p>
 
-<p style="padding: 10px">Available browses</p>
+        <h2>Topics</h2>
 
-<button onclick="loadData('newItems')">Newest records mentioning Alaska</button>
-<button onclick="loadData('1964Quake')">1964 Earthquake Photos</button>
-<button onclick="loadData('taskForcePhotos')">Alaska Task Force Photographs</button>
-<button onclick="loadData('schNews')">BIA School Newspapers</button>
-<button onclick="loadData('villageCensusRolls')">Village Census Rolls</button>
+        <button onclick="loadData('newItems')">Newest records mentioning Alaska</button>
+        <button onclick="loadData('1964Quake')">1964 Earthquake Photos</button>
+        <button onclick="loadData('taskForcePhotos')">Alaska Task Force Photographs</button>
+        <button onclick="loadData('schNews')">BIA School Newspapers</button>
+        <button onclick="loadData('villageCensusRolls')">Village Census Rolls</button>
 
+        <hr>
 
+        <!--Provide brief introduction to materials being displayed -->
+        <div id="intro">Browse results will display here...</div>
 
-<p style="border-bottom-style: solid"></p>
+        <!--Load most items with select metadata -->
+        <div id="recent"></div>
 
-<!--Provide brief introduction to materials being displayed -->
-<div id="intro"></div>
+        <hr>
 
-<!--Load most items with select metadata -->
-<div id="recent"></div>
+        <div id="rBtn"><button id="fwd" onclick="loadData('pageFwd')">Next 10 records</button></div>
 
-<p style="margin-bottom: 100px"></p>
-<div id="rBtn"><button id="fwd" onclick="loadData('pageFwd')">Next 10 records</button></div>
-<div id="endList"></div>
+        <div id="endList"></div>
 
-<p style="padding: 10px">This is a personal project of Daniel Cornwall, a librarian/coder living in Alaska. He can be <a href="https://librarianfromalaska.wordpress.com/about/" target="_blank">contacted through his blog's about page</a></p>.
-</div> <!--End fluid container-->
+      </div>
+    </section>
+  </main>
 
-</section>
+  <footer class="usa-footer usa-footer-medium" role="contentinfo">
+
+    <div class="usa-grid usa-footer-return-to-top">
+      <a href="#">Return to top</a>
+    </div>
+  
+    <div class="usa-footer-primary-section">
+        <div class="usa-grid">
+          <nav class="usa-footer-nav">
+              <ul class="usa-unstyled-list">
+                <li class="usa-footer-primary-link">
+                  <a href="contributors.html">
+                    Learn about our Contributors
+                  </a>
+                </li>
+              </ul>
+          </nav>
+        </div>
+      </div>
+  </footer>
+  <!-- US Web Design Standards -->
+  <script src="uswds-1.6.0/js/uswds.min.js"></script>
+  <!-- Local JavaScript-->
+  <script src="js/search.js"></script>
 </body>
 </html>
