@@ -322,7 +322,7 @@ function printNumObj(response) {
   var recType = ShowRecType(response);
   if (typeof response.objects === 'undefined' && recType === "fileUnit") {
     $("#recent").append("<br> There are " + response.description.fileUnit.itemCount + " digital objects associated with this record.");
-    $("#recent").append("<br> <a href=\"https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=" + response.naId + "&sort=naIdSort%20asc" + "\">View digital objects in National Archives Catalog [external link]</a>");
+    $("#recent").append("<br> <a href=\"https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=" + response.naId + "&sort=naIdSort%20asc" + "\" target=\"_blank\">View digital objects in National Archives Catalog [external link]</a>");
       } else if (typeof response.objects.object.length === 'undefined') {
   $("#recent").append("<br> There is one digital object associated with this record.");
   }  else {
@@ -372,7 +372,7 @@ function printObjLoc(response) {
 } //End printObjLoc
 
 function printRecLoc(response) {
-  $("#recent").append("<br><a href=\"https://catalog.archives.gov/id/" + response.naId + "\">View full record in NARA Catalog [external link]</a>");
+  $("#recent").append("<br><a href=\"https://catalog.archives.gov/id/" + response.naId + "\" target=\"_blank\">View full record in NARA Catalog [external link]</a>");
 } //End printRecLoc
 
 function printCataloged(response) {
