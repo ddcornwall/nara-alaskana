@@ -25,7 +25,7 @@
 <body class="usa-banner">
   <!-- Skip Navigation -->
   <a class="usa-skipnav" href="#main-content">Skip to main content</a>
-  
+
   <header class="usa-header usa-header-extended" role="banner">
     <div class="usa-navbar">
       <div class="usa-logo" id="extended-logo">
@@ -57,7 +57,7 @@
             <a class="usa-nav-link" href="about.html"><span>About</span></a>
           </li>
         </ul>
-        
+
         <div class="usa-nav-secondary">
 
           <ul class="usa-unstyled-list usa-nav-secondary-links">
@@ -86,15 +86,25 @@
 
         <p>Search the US National Archives for Alaska-related records and objects.</p>
 
+
+//Experimental code based on PJS todo list app at https://glitch.com/edit/#!/kiwi-cap
+        <div>
+          <button id ="search" onclick="handlers.getSearch()">Add</button>
+          <input id="keywords" type="text">
+        </div>
+
+
+<!--
         <form id="form-container" class="usa-search js-search-form" role="search">
           <div role="search">
             <label for="keywords" class="usa-sr-only">Search keywords</label>
             <input type="search" id="keywords" />
             <button id="submit-btn" type="submit">
-              <img src="uswds-1.6.0/img/search.svg" alt="Search"> 
+              <img src="uswds-1.6.0/img/search.svg" alt="Search">
               <span class="usa-sr-only">Search<</span></button>
           </div>
         </form>
+-->>
 
         <p>Please note: It may take up to 90 seconds for records to appear. This is a <a href="https://github.com/ddcornwall/nara-alaskana/issues">known issue</a>.</p>
 

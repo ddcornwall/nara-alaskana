@@ -298,3 +298,11 @@ $('#form-container').submit(loadData);
 
 
 }); //end document ready
+
+
+//Experimental code based on PJS todo list app at https://glitch.com/edit/#!/kiwi-cap
+var handlers = {
+  getSearch: function() {
+    var keywords = document.getElementById('keywords');
+     buildSearch(keywords);
+}
