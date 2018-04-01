@@ -1,30 +1,35 @@
-$(function() { //begin document ready
+//Seearch Script for Alaskana Explorer
 
-function loadData() { //begin loadData
 
-//needed for NARA thumbnail Workaround
+// Declare global variables
+
+// needed for NARA thumbnail Workaround
 var filePath="";
 
 //offset, SearchType and PageURL needed for possible future paging functionality will be passed in through loadData.
 var offset=0;
-searchType="search";
+searchType="";
 pageURL="";
 
 //need global variable catalogURL to provide browsing workaround
 var catalogKeywords="";
 
-//main program
-$.getJSON( buildSearch(), function( data ) {
+//Start function mainProgram
+
+function mainProgram(keywords, searchType) {
+searchURL = buildSearch(keywords, searchType); //put in paraments, may need handlers
+$.getJSON( searchURL, function( data ) {
   response=data;
   console.log(response);
   displayResults(response);
  }); //End getJSON
 
+} // end mainProgram
 
 //define functions
 
 //start function buildSearch
-function buildSearch() { //begin buildSearch
+function buildSearch(keywords, searchType) { //begin buildSearch
 
   //Clears previous results
   var $recentLinks = $("#recent");
@@ -60,7 +65,7 @@ if (searchType == "search"){
   pageURL=akURL;
   console.log(searchType, " ", akURL);
 } else if (searchType="pageFwd") {
-  offset=offset+9;
+  offset=offset+10;
   akURL=pageURL + "&offset=" + offset;
   console.log(akURL);
 }
@@ -108,9 +113,6 @@ function displayResults(results) {
 
   } // end display loop
 
-//Temporary paging workaround
- $("#recent").append("</br><a href=\"https://catalog.archives.gov/search?q=" + catalogKeywords + "%20and%20alaska%20&resultTypes=item,fileUnit&tabType=online&offset=10\" target=\"_blank\">See next 10 records</a> in full National Archives Catalog.");
- $("#recent").append("</br>This browse into the full catalog is offered because we cannot current page through results here. Link opens into the official National Catalog in a new tab.")
 
   clearTimeout(naraRequestTimeout);
 
@@ -290,19 +292,15 @@ function printNaID(response) {
 } //end DisplayResults
 
 
-return false;
-
-}; //end function load data
-
-$('#form-container').submit(loadData);
-
-
-}); //end document ready
-
 
 //Experimental code based on PJS todo list app at https://glitch.com/edit/#!/kiwi-cap
 var handlers = {
   getSearch: function() {
     var keywords = document.getElementById('keywords');
-     buildSearch(keywords);
+    mainProgram(keywords.value, 'search');
+    keywords.value="";
+},
+   pageFwd: function() {
+      mainProgram("", 'pageFwd');
+   }
 }
