@@ -32,8 +32,15 @@ var handlers = {
      } else {
         x.style.display = "none";
      }
- }
-} //end handlers
+   },
+   checkResultBtn: function() {
+     //disable paging if offset is more than search resultFields
+     if ((offset+10) >= response.opaResponse.results.total) {
+        document.getElementById("fwd").disabled = true;
+        $("#endList").append("<br>End of results list.");
+     } else {document.getElementById("fwd").disabled = false;}
+   }
+ } //end handlers
 
 
 
@@ -44,6 +51,7 @@ function mainProgram(keywords, searchType) {
 searchURL = buildSearch(keywords, searchType); //put in paraments, may need handlers
 $.getJSON( searchURL, function( data ) {
   response=data;
+  handlers.checkResultBtn();
   console.log(response);
   displayResults(response);
  }); //End getJSON
