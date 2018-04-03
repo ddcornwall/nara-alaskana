@@ -14,8 +14,32 @@ pageURL="";
 //need global variable catalogURL to provide browsing workaround
 var catalogKeywords="";
 
-//Start function mainProgram
+//Experimental code based on PJS todo list app at https://glitch.com/edit/#!/kiwi-cap
+//handlers need to be up here for showButton to work
+var handlers = {
+  getSearch: function() {
+    var keywords = document.getElementById('keywords');
+    mainProgram(keywords.value, 'search');
+    keywords.value="";
+},
+   pageFwd: function() {
+      mainProgram("", 'pageFwd');
+   },
+   showButton: function(displayed) {
+     var x = document.getElementById("fwd");
+     if (displayed == true) {
+        x.style.display = "block";
+     } else {
+        x.style.display = "none";
+     }
+ }
+} //end handlers
 
+
+
+handlers.showButton(false);
+
+//Start function mainProgram
 function mainProgram(keywords, searchType) {
 searchURL = buildSearch(keywords, searchType); //put in paraments, may need handlers
 $.getJSON( searchURL, function( data ) {
@@ -28,12 +52,17 @@ $.getJSON( searchURL, function( data ) {
 
 //define functions
 
+
+
+
+
+
 //start function buildSearch
 function buildSearch(keywords, searchType) { //begin buildSearch
 
   //Clears previous results
-  var $recentLinks = $("#recent");
-  $recentLinks.text("");
+  //var $recentLinks = $("#recent");
+  //$recentLinks.text("");
 
   //Clears previous intro text
   var $introLinks = $("#intro");
@@ -113,6 +142,7 @@ function displayResults(results) {
 
   } // end display loop
 
+handlers.showButton(pageDisplayed);
 
   clearTimeout(naraRequestTimeout);
 
@@ -290,17 +320,3 @@ function printNaID(response) {
 } //End printNaID
 
 } //end DisplayResults
-
-
-
-//Experimental code based on PJS todo list app at https://glitch.com/edit/#!/kiwi-cap
-var handlers = {
-  getSearch: function() {
-    var keywords = document.getElementById('keywords');
-    mainProgram(keywords.value, 'search');
-    keywords.value="";
-},
-   pageFwd: function() {
-      mainProgram("", 'pageFwd');
-   }
-}
