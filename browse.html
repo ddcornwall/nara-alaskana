@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <title>Subject Browse | Alaskana Explorer</title>
-    
+
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="author" content="Daniel Cornwall">
@@ -17,17 +17,13 @@
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Local JavaScript-->
-    <!--script src="browse.js"></script -->
-    <script src="js/browse.js"></script>
-
 </head>
 
 
 <body class="usa-banner">
   <!-- Skip Navigation -->
   <a class="usa-skipnav" href="#main-content">Skip to main content</a>
-  
+
   <header class="usa-header usa-header-extended" role="banner">
     <div class="usa-navbar">
       <div class="usa-logo" id="extended-logo">
@@ -59,7 +55,7 @@
             <a class="usa-nav-link" href="about.html"><span>About</span></a>
           </li>
         </ul>
-        
+
         <div class="usa-nav-secondary">
 
           <ul class="usa-unstyled-list usa-nav-secondary-links">
@@ -83,18 +79,18 @@
 
     <section class="usa-section">
       <div class="usa-grid">
-    
+
         <h1>Subject Browse</h1>
 
         <p>Browse records in the US National Archives by an Alaska topic.</p>
 
         <h2>Topics</h2>
 
-        <button onclick="loadData('newItems')">Newest records mentioning Alaska</button>
-        <button onclick="loadData('1964Quake')">1964 Earthquake Photos</button>
-        <button onclick="loadData('taskForcePhotos')">Alaska Task Force Photographs</button>
-        <button onclick="loadData('schNews')">BIA School Newspapers</button>
-        <button onclick="loadData('villageCensusRolls')">Village Census Rolls</button>
+        <button onclick="handlers.getBrowse('newItems')">Newest records mentioning Alaska</button>
+        <button onclick="handlers.getBrowse('1964Quake')">1964 Earthquake Photos</button>
+        <button onclick="handlers.getBrowse('taskForcePhotos')">Alaska Task Force Photographs</button>
+        <button onclick="handlers.getBrowse('schNews')">BIA School Newspapers</button>
+        <button onclick="handlers.getBrowse('villageCensusRolls')">Village Census Rolls</button>
 
         <hr>
 
@@ -121,7 +117,7 @@
     <div class="usa-grid usa-footer-return-to-top">
       <a href="#">Return to top</a>
     </div>
-  
+
     <div class="usa-footer-primary-section">
         <div class="usa-grid">
           <nav class="usa-footer-nav">

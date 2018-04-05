@@ -1,41 +1,86 @@
-$(function() { //begin document ready
+//Seearch Script for Alaskana Explorer
 
-function loadData() { //begin loadData
 
-//needed for NARA thumbnail Workaround
+// Declare global variables
+
+// needed for NARA thumbnail Workaround
 var filePath="";
 
 //offset, SearchType and PageURL needed for possible future paging functionality will be passed in through loadData.
 var offset=0;
-searchType="search";
+searchType="";
 pageURL="";
 
 //need global variable catalogURL to provide browsing workaround
 var catalogKeywords="";
 
-//main program
-$.getJSON( buildSearch(), function( data ) {
+//Experimental code based on PJS todo list app at https://glitch.com/edit/#!/kiwi-cap
+//handlers need to be up here for showButton to work
+var handlers = {
+  getSearch: function() {
+    var keywords = document.getElementById('keywords');
+    mainProgram(keywords.value, 'search');
+    keywords.value="";
+  },
+  getBrowse: function(searchType) {
+      mainProgram("", searchType);
+  },
+   pageFwd: function() {
+      mainProgram("", 'pageFwd');
+   },
+   showButton: function(displayed) {
+     var x = document.getElementById("fwd");
+     if (displayed == true) {
+        x.style.display = "block";
+     } else {
+        x.style.display = "none";
+     }
+   },
+   checkResultBtn: function() {
+     //disable paging if offset is more than search resultFields
+     if ((offset+10) >= response.opaResponse.results.total) {
+        document.getElementById("fwd").disabled = true;
+        $("#endList").append("<br>End of results list.");
+     } else {document.getElementById("fwd").disabled = false;}
+   }
+ } //end handlers
+
+
+
+handlers.showButton(false);
+
+//Start function mainProgram
+function mainProgram(keywords, searchType) {
+searchURL = buildSearch(keywords, searchType); //put in paraments, may need handlers
+$.getJSON( searchURL, function( data ) {
   response=data;
+  handlers.checkResultBtn();
   console.log(response);
   displayResults(response);
  }); //End getJSON
 
+} // end mainProgram
 
 //define functions
 
+
+
+
+
+
 //start function buildSearch
-function buildSearch() { //begin buildSearch
+function buildSearch(keywords, searchType) { //begin buildSearch
 
   //Clears previous results
-  var $recentLinks = $("#recent");
-  $recentLinks.text("");
+  //var $recentLinks = $("#recent");
+  //$recentLinks.text("");
 
   //Clears previous intro text
   var $introLinks = $("#intro");
   $introLinks.text("");
 
   //clear out past instances in memory
-  var akURL=""
+  var akURL="" //clear out past instances in memory
 
 //initialize akURL with all common parts before customizing
   akURL="https://catalog.archives.gov/api/v1/?"; // Base url for API
@@ -59,8 +104,105 @@ if (searchType == "search"){
   //Save pageURL if needed for paging forward
   pageURL=akURL;
   console.log(searchType, " ", akURL);
+} else if (searchType == "newItems") {
+
+  //Limit to items and file units that mention Alaska and have digital objects
+  akURL = akURL + "q=alaska&resultTypes=item,fileUnit&exists=objects"
+
+  //Sort by date record modified
+  akURL = akURL + "&sort=description.recordHistory.changed.modification.dateTime%20desc"
+
+  //Save pageURL if needed for paging forward
+  pageURL=akURL;
+
+    console.log(searchType, " ", akURL);
+ //else if below retrieves federally run school newspapers
+} else if (searchType == "schNews"){
+ offset=0;
+  //Intro text
+  $("#intro").append("<p>Scope and Content of parent series: This series consists of school newspapers from Bureau of Indian Affairs schools throughout Alaska. </p> The newspapers include news about school activities such as sports; dances; special projects by different classes; and programs including plays, 4-H club events, and student council affairs. There are usually articles about events in the town or village including hunting; fishing; arrival of the supply ship, North Star, and other visitors; the arrival of the mail plane; births, deaths, and marriages; and weather conditions. Many of the newspapers include articles written by the children about their accomplishments or interests.</p><p>There are also several newspapers concerning events in the Adult Education program.</p><hr>");
+  $("#recent").append("<p>Please be patient as it may take up to 90 seconds for records to appear. This is a known issue and being worked on.</p>")
+
+
+//pull records mentioning the Alaska Digitization Project as an "alternate control number"
+  akURL=akURL + "description.fileUnit.variantControlNumberArray.variantControlNumber=\"Alaska%20Digitization%20Project\""
+
+ //pull records of parent title series 'newspapers'
+ akURL=akURL + "&description.fileUnit.parentSeries.title=newspapers"
+
+  //limit records to items with descriptions
+  akURL=akURL + "&resultTypes=fileUnit";
+
+  //Sort items by title
+  akURL=akURL + "&sort=description.title asc";
+
+  //Save pageURL if needed for paging forward
+  pageURL=akURL;
+
+  console.log(searchType, " ", akURL);
+} else if (searchType == "1964Quake"){
+offset=0;
+//Intro text
+$("#intro").append("<p>Scope and Content of parent series: This series consists of black and white photographs taken by the Alaska District of the U.S. Army Corps of Engineers of the damage done by the 1964 Good Friday Alaska earthquake and the subsequent recovery efforts. The areas represented are Anchorage, the Turnagain Arm residential area, Denali Elementary School, Cordova, Elmendorf Air Force Base, Fort Richardson, Girdwood, Homer, Kodiak, Moose Pass, Nikolski, Seldovia, Seward, Tatitlek, Valdez, and Whittier.</p>");
+$("#intro").append("<p>Items should be in order by community.</p><hr>")
+$("#recent").append("<p>Please be patient as it may take up to 90 seconds for records to appear. This is a known issue and being worked on.</p>")
+
+//pull records of parent title series 'Alaska Earthquake Photographs'
+ akURL=akURL + "description.fileUnit.parentSeries.title=1964%20Alaska%20Earthquake%20Photographs"
+
+  //limit records to items with descriptions
+  akURL=akURL + "&resultTypes=fileUnit";
+
+  //Sort items by title
+  akURL=akURL + "&sort=description.title asc";
+
+  //Save pageURL if needed for paging forward
+  pageURL=akURL;
+
+  console.log(searchType, " ", akURL);
+} else if (searchType == "villageCensusRolls"){
+offset=0;
+//Intro text
+//$("#intro").append("<p>Scope and Content of parent series: This series consists of photographs taken between 1972 and 1976 documenting national parks in Alaska. Subjects include flora, fauna, facilities, rivers, mountains, other natural features, towns and villages, and activities of park personnel and visitors.</p>");
+//$("#intro").append("<p style=\"border-bottom-style: solid\">Items should be in order by place name.</p> <p></p>")
+$("#recent").append("<p>Please be patient as it may take up to 90 seconds for records to appear. This is a known issue and being worked on.</p>")
+
+//pull records of parent title series 'Village Census Rolls"
+ akURL=akURL + "description.fileUnit.parentSeries.title=village%20census%20rolls";
+
+  //limit records to items with descriptions
+  akURL=akURL + "&resultTypes=fileUnit";
+
+  //Sort items by title
+  akURL=akURL + "&sort=description.title asc";
+
+  //Save pageURL if needed for paging forward
+  pageURL=akURL;
+
+  console.log(searchType, " ", akURL);
+
+} else if (searchType == "taskForcePhotos"){
+offset=0;
+//Intro text
+$("#intro").append("<p>Scope and Content of parent series: This series consists of photographs taken between 1972 and 1976 documenting national parks in Alaska. Subjects include flora, fauna, facilities, rivers, mountains, other natural features, towns and villages, and activities of park personnel and visitors.</p>");
+$("#intro").append("<p>Items should be in order by place name.</p><hr>")
+$("#recent").append("<p>Please be patient as it may take up to 90 seconds for records to appear. This is a known issue and being worked on.</p>")
+
+//pull records of parent title series 'Alaska Task Force Photographs', naId=2252773
+ akURL=akURL + "description.fileUnit.parentSeries.naId=2252773"
+
+  //limit records to items with descriptions
+  akURL=akURL + "&resultTypes=fileUnit";
+
+  //Sort items by title
+  akURL=akURL + "&sort=description.title asc";
+
+  //Save pageURL if needed for paging forward
+  pageURL=akURL;
+
+  console.log(searchType, " ", akURL);
 } else if (searchType="pageFwd") {
-  offset=offset+9;
+  offset=offset+10;
   akURL=pageURL + "&offset=" + offset;
   console.log(akURL);
 }
@@ -108,9 +250,7 @@ function displayResults(results) {
 
   } // end display loop
 
-//Temporary paging workaround
- $("#recent").append("</br><a href=\"https://catalog.archives.gov/search?q=" + catalogKeywords + "%20and%20alaska%20&resultTypes=item,fileUnit&tabType=online&offset=10\" target=\"_blank\">See next 10 records</a> in full National Archives Catalog.");
- $("#recent").append("</br>This browse into the full catalog is offered because we cannot current page through results here. Link opens into the official National Catalog in a new tab.")
+handlers.showButton(pageDisplayed);
 
   clearTimeout(naraRequestTimeout);
 
@@ -288,13 +428,3 @@ function printNaID(response) {
 } //End printNaID
 
 } //end DisplayResults
-
-
-return false;
-
-}; //end function load data
-
-$('#form-container').submit(loadData);
-
-
-}); //end document ready
