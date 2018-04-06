@@ -63,17 +63,14 @@ $.getJSON( searchURL, function( data ) {
 
 //define functions
 
-
-
-
-
-
 //start function buildSearch
 function buildSearch(keywords, searchType) { //begin buildSearch
 
   //Clears previous results
-  //var $recentLinks = $("#recent");
-  //$recentLinks.text("");
+  if (searchType != "pageFwd") {
+     var $recentLinks = $("#recent");
+     $recentLinks.text("");
+  }
 
   //Clears previous intro text
   var $introLinks = $("#intro");
@@ -92,11 +89,8 @@ if (searchType == "search"){
  var keywords = $("#keywords").val();
  akURL=akURL + "q=" + keywords + " and alaska &exists=objects";
 
- //Create a workaround catalog URL to browse next set of records in full NARA catalog
- catalogKeywords = keywords;
 
-//Set keywords from form in index.html, restricted to records mentioning Alaska Digitization Project
-//  akURL=akURL + "q=" + keywords + " and \"Alaska%20Digitization%20Project\"";
+ $("#recent").append("<br>Searching for digital Alaskana relating to " + keywords + ".");
 
   //limit records to items with descriptions
   akURL=akURL + "&resultTypes=item,fileUnit";
@@ -163,8 +157,7 @@ $("#recent").append("<p>Please be patient as it may take up to 90 seconds for re
 } else if (searchType == "villageCensusRolls"){
 offset=0;
 //Intro text
-//$("#intro").append("<p>Scope and Content of parent series: This series consists of photographs taken between 1972 and 1976 documenting national parks in Alaska. Subjects include flora, fauna, facilities, rivers, mountains, other natural features, towns and villages, and activities of park personnel and visitors.</p>");
-//$("#intro").append("<p style=\"border-bottom-style: solid\">Items should be in order by place name.</p> <p></p>")
+$("#intro").append("<p>Scope and Content of parent series: This series consists of census sheets for towns and villages throughout the Territory and State of Alaska. The census was mainly taken by Bureau of Indian Affairs teachers and maintained by the Bureau's area office in Juneau. Information included on the census varies from year to year but consistently contains the names of each family member, their relationship to the head of the household, their age, and degree of Native blood. In some years the census sheets also asked for information on individual's education, ability to speak and read English, martial status, occupation, and special skills. Some sheets also have a column for remarks in which notes were made on the social, economic, and physical health of individuals. For some years the census also included questions relating to the monetary value of homes, vehicles, livestock such as reindeer, sled dogs, and foxes, and Native store shares held by each family.</p><hr>");
 $("#recent").append("<p>Please be patient as it may take up to 90 seconds for records to appear. This is a known issue and being worked on.</p>")
 
 //pull records of parent title series 'Village Census Rolls"
@@ -228,7 +221,12 @@ function displayResults(results) {
 
 
   //space between text and results
-  $("#recent").append("</br>" + response.opaResponse.results.total + " results are available.</br>");
+  if (response.opaResponse.results.total === 0) {
+    $("#recent").append("<br> No results were available for your search. Please try again.");
+    return;
+  } else {
+       $("#recent").append("<br>" + response.opaResponse.results.total + " results are available.<br>");
+      }
 
   //display results
   for (var i=0; i < response.opaResponse.results.result.length; i++) {
