@@ -3,24 +3,22 @@
 <html lang="en-us">
 
   <head>
-    <title>Alaskana Explorer</title>
-
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="author" content="Daniel Cornwall">
     <meta name="description" content="Explore Alaskana in the National Archives.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <title>Alaskana Explorer</title>
+    
+    <!-- <link rel="icon" type="image/x-icon" href="http://example.com/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png"> -->
+
     <!-- US Web Design Sytem -->
     <link rel="stylesheet" href="uswds-1.6.0/css/uswds.min.css">
     <!--Local css file-->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 </head>
-
 
 <body class="usa-banner">
   <!-- Skip Navigation -->
@@ -88,24 +86,15 @@
 
 
 <!-- Experimental code based on PJS todo list app at https://glitch.com/edit/#!/kiwi-cap -->
-        <fieldset>
-          <label for="keywords">Enter Search Terms:</label>
-          <input id="keywords" type="text">
-          <button id ="search" onclick="handlers.getSearch()">Search</button>
-        </fieldset>
-
-
-<!--
-        <form id="form-container" class="usa-search js-search-form" role="search">
+        <form id="form-container" class="usa-search- js-search-form" role="search">
           <div role="search">
-            <label for="keywords" class="usa-sr-only">Search keywords</label>
-            <input type="search" id="keywords" />
+            <label for="search-field" class="usa-sr-only">Search keywords</label>
+            <input type="search" id="search-field" />
             <button id="submit-btn" type="submit">
               <img src="uswds-1.6.0/img/search.svg" alt="Search">
               <span class="usa-sr-only">Search<</span></button>
           </div>
         </form>
--->
 
         <p>Please note: It may take up to 90 seconds for records to appear. This is a <a href="https://github.com/ddcornwall/nara-alaskana/issues">known issue</a>.</p>
 
@@ -114,11 +103,10 @@
 
     <!--Load most recent items with select metadata -->
     <section class="usa-grid">
-      <div id="recent"></div>
+      <div id="response-container">
+        <!-- Results will show up here -->
+      </div>
     </section>
-
-<hr>
-<div id="rBtn"><button id="fwd" onclick="handlers.pageFwd()">Next 10 records</button></div>
 </main>
 
 <footer class="usa-footer usa-footer-medium" role="contentinfo">
@@ -144,6 +132,6 @@
 <!-- US Web Design Standards -->
 <script src="uswds-1.6.0/js/uswds.min.js"></script>
 <!-- Local JavaScript-->
-<script src="js/search.js"></script>
+<script src="js/searchFetch.js"></script>
 </body>
 </html>
